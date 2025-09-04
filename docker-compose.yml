@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: cmsa-pg
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: cmsa
+      POSTGRES_USER: cmsa
+      POSTGRES_PASSWORD: changeme
+      TZ: "America/Tegucigalpa"
+    ports:
+      - "5432:5432"
+    volumes:
+      - cmsa_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U cmsa -d cmsa" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  cmsa_pgdata:
