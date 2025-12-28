@@ -383,6 +383,15 @@ export const ProtocolKind: {
 
 export type ProtocolKind = (typeof ProtocolKind)[keyof typeof ProtocolKind]
 
+
+export const ExpenseType: {
+  purchase: 'purchase',
+  bank_deposit: 'bank_deposit',
+  other: 'other'
+};
+
+export type ExpenseType = (typeof ExpenseType)[keyof typeof ExpenseType]
+
 }
 
 export type Sex = $Enums.Sex
@@ -460,6 +469,10 @@ export const ConnectionType: typeof $Enums.ConnectionType
 export type ProtocolKind = $Enums.ProtocolKind
 
 export const ProtocolKind: typeof $Enums.ProtocolKind
+
+export type ExpenseType = $Enums.ExpenseType
+
+export const ExpenseType: typeof $Enums.ExpenseType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -4990,10 +5003,12 @@ export namespace Prisma {
 
   export type CashSessionCountOutputType = {
     movements: number
+    invoices: number
   }
 
   export type CashSessionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     movements?: boolean | CashSessionCountOutputTypeCountMovementsArgs
+    invoices?: boolean | CashSessionCountOutputTypeCountInvoicesArgs
   }
 
   // Custom InputTypes
@@ -5012,6 +5027,13 @@ export namespace Prisma {
    */
   export type CashSessionCountOutputTypeCountMovementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CashMovementWhereInput
+  }
+
+  /**
+   * CashSessionCountOutputType without action
+   */
+  export type CashSessionCountOutputTypeCountInvoicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvoiceWhereInput
   }
 
 
@@ -26533,6 +26555,7 @@ export namespace Prisma {
     locationId: string | null
     cashierId: string | null
     registerId: string | null
+    cashSessionId: string | null
     requestContextId: string | null
     subtotal: Decimal | null
     discountTotal: Decimal | null
@@ -26550,6 +26573,7 @@ export namespace Prisma {
     locationId: string | null
     cashierId: string | null
     registerId: string | null
+    cashSessionId: string | null
     requestContextId: string | null
     subtotal: Decimal | null
     discountTotal: Decimal | null
@@ -26567,6 +26591,7 @@ export namespace Prisma {
     locationId: number
     cashierId: number
     registerId: number
+    cashSessionId: number
     requestContextId: number
     subtotal: number
     discountTotal: number
@@ -26600,6 +26625,7 @@ export namespace Prisma {
     locationId?: true
     cashierId?: true
     registerId?: true
+    cashSessionId?: true
     requestContextId?: true
     subtotal?: true
     discountTotal?: true
@@ -26617,6 +26643,7 @@ export namespace Prisma {
     locationId?: true
     cashierId?: true
     registerId?: true
+    cashSessionId?: true
     requestContextId?: true
     subtotal?: true
     discountTotal?: true
@@ -26634,6 +26661,7 @@ export namespace Prisma {
     locationId?: true
     cashierId?: true
     registerId?: true
+    cashSessionId?: true
     requestContextId?: true
     subtotal?: true
     discountTotal?: true
@@ -26738,6 +26766,7 @@ export namespace Prisma {
     locationId: string
     cashierId: string
     registerId: string | null
+    cashSessionId: string | null
     requestContextId: string
     subtotal: Decimal
     discountTotal: Decimal
@@ -26774,6 +26803,7 @@ export namespace Prisma {
     locationId?: boolean
     cashierId?: boolean
     registerId?: boolean
+    cashSessionId?: boolean
     requestContextId?: boolean
     subtotal?: boolean
     discountTotal?: boolean
@@ -26784,6 +26814,7 @@ export namespace Prisma {
     location?: boolean | LocationDefaultArgs<ExtArgs>
     cashier?: boolean | UserDefaultArgs<ExtArgs>
     register?: boolean | Invoice$registerArgs<ExtArgs>
+    cashSession?: boolean | Invoice$cashSessionArgs<ExtArgs>
     requestContext?: boolean | RequestContextDefaultArgs<ExtArgs>
     lines?: boolean | Invoice$linesArgs<ExtArgs>
     payments?: boolean | Invoice$paymentsArgs<ExtArgs>
@@ -26801,6 +26832,7 @@ export namespace Prisma {
     locationId?: boolean
     cashierId?: boolean
     registerId?: boolean
+    cashSessionId?: boolean
     requestContextId?: boolean
     subtotal?: boolean
     discountTotal?: boolean
@@ -26811,6 +26843,7 @@ export namespace Prisma {
     location?: boolean | LocationDefaultArgs<ExtArgs>
     cashier?: boolean | UserDefaultArgs<ExtArgs>
     register?: boolean | Invoice$registerArgs<ExtArgs>
+    cashSession?: boolean | Invoice$cashSessionArgs<ExtArgs>
     requestContext?: boolean | RequestContextDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["invoice"]>
 
@@ -26824,6 +26857,7 @@ export namespace Prisma {
     locationId?: boolean
     cashierId?: boolean
     registerId?: boolean
+    cashSessionId?: boolean
     requestContextId?: boolean
     subtotal?: boolean
     discountTotal?: boolean
@@ -26834,6 +26868,7 @@ export namespace Prisma {
     location?: boolean | LocationDefaultArgs<ExtArgs>
     cashier?: boolean | UserDefaultArgs<ExtArgs>
     register?: boolean | Invoice$registerArgs<ExtArgs>
+    cashSession?: boolean | Invoice$cashSessionArgs<ExtArgs>
     requestContext?: boolean | RequestContextDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["invoice"]>
 
@@ -26847,6 +26882,7 @@ export namespace Prisma {
     locationId?: boolean
     cashierId?: boolean
     registerId?: boolean
+    cashSessionId?: boolean
     requestContextId?: boolean
     subtotal?: boolean
     discountTotal?: boolean
@@ -26854,13 +26890,14 @@ export namespace Prisma {
     total?: boolean
   }
 
-  export type InvoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "invoiceNo" | "patientId" | "preclinicId" | "status" | "invoiceAt" | "locationId" | "cashierId" | "registerId" | "requestContextId" | "subtotal" | "discountTotal" | "taxTotal" | "total", ExtArgs["result"]["invoice"]>
+  export type InvoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "invoiceNo" | "patientId" | "preclinicId" | "status" | "invoiceAt" | "locationId" | "cashierId" | "registerId" | "cashSessionId" | "requestContextId" | "subtotal" | "discountTotal" | "taxTotal" | "total", ExtArgs["result"]["invoice"]>
   export type InvoiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     patient?: boolean | Invoice$patientArgs<ExtArgs>
     preclinic?: boolean | Invoice$preclinicArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
     cashier?: boolean | UserDefaultArgs<ExtArgs>
     register?: boolean | Invoice$registerArgs<ExtArgs>
+    cashSession?: boolean | Invoice$cashSessionArgs<ExtArgs>
     requestContext?: boolean | RequestContextDefaultArgs<ExtArgs>
     lines?: boolean | Invoice$linesArgs<ExtArgs>
     payments?: boolean | Invoice$paymentsArgs<ExtArgs>
@@ -26873,6 +26910,7 @@ export namespace Prisma {
     location?: boolean | LocationDefaultArgs<ExtArgs>
     cashier?: boolean | UserDefaultArgs<ExtArgs>
     register?: boolean | Invoice$registerArgs<ExtArgs>
+    cashSession?: boolean | Invoice$cashSessionArgs<ExtArgs>
     requestContext?: boolean | RequestContextDefaultArgs<ExtArgs>
   }
   export type InvoiceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -26881,6 +26919,7 @@ export namespace Prisma {
     location?: boolean | LocationDefaultArgs<ExtArgs>
     cashier?: boolean | UserDefaultArgs<ExtArgs>
     register?: boolean | Invoice$registerArgs<ExtArgs>
+    cashSession?: boolean | Invoice$cashSessionArgs<ExtArgs>
     requestContext?: boolean | RequestContextDefaultArgs<ExtArgs>
   }
 
@@ -26892,6 +26931,7 @@ export namespace Prisma {
       location: Prisma.$LocationPayload<ExtArgs>
       cashier: Prisma.$UserPayload<ExtArgs>
       register: Prisma.$CashRegisterPayload<ExtArgs> | null
+      cashSession: Prisma.$CashSessionPayload<ExtArgs> | null
       requestContext: Prisma.$RequestContextPayload<ExtArgs>
       lines: Prisma.$InvoiceLinePayload<ExtArgs>[]
       payments: Prisma.$PaymentPayload<ExtArgs>[]
@@ -26907,6 +26947,7 @@ export namespace Prisma {
       locationId: string
       cashierId: string
       registerId: string | null
+      cashSessionId: string | null
       requestContextId: string
       subtotal: Prisma.Decimal
       discountTotal: Prisma.Decimal
@@ -27311,6 +27352,7 @@ export namespace Prisma {
     location<T extends LocationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LocationDefaultArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     cashier<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     register<T extends Invoice$registerArgs<ExtArgs> = {}>(args?: Subset<T, Invoice$registerArgs<ExtArgs>>): Prisma__CashRegisterClient<$Result.GetResult<Prisma.$CashRegisterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    cashSession<T extends Invoice$cashSessionArgs<ExtArgs> = {}>(args?: Subset<T, Invoice$cashSessionArgs<ExtArgs>>): Prisma__CashSessionClient<$Result.GetResult<Prisma.$CashSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     requestContext<T extends RequestContextDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RequestContextDefaultArgs<ExtArgs>>): Prisma__RequestContextClient<$Result.GetResult<Prisma.$RequestContextPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     lines<T extends Invoice$linesArgs<ExtArgs> = {}>(args?: Subset<T, Invoice$linesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoiceLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     payments<T extends Invoice$paymentsArgs<ExtArgs> = {}>(args?: Subset<T, Invoice$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -27353,6 +27395,7 @@ export namespace Prisma {
     readonly locationId: FieldRef<"Invoice", 'String'>
     readonly cashierId: FieldRef<"Invoice", 'String'>
     readonly registerId: FieldRef<"Invoice", 'String'>
+    readonly cashSessionId: FieldRef<"Invoice", 'String'>
     readonly requestContextId: FieldRef<"Invoice", 'String'>
     readonly subtotal: FieldRef<"Invoice", 'Decimal'>
     readonly discountTotal: FieldRef<"Invoice", 'Decimal'>
@@ -27808,6 +27851,25 @@ export namespace Prisma {
      */
     include?: CashRegisterInclude<ExtArgs> | null
     where?: CashRegisterWhereInput
+  }
+
+  /**
+   * Invoice.cashSession
+   */
+  export type Invoice$cashSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashSession
+     */
+    select?: CashSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashSession
+     */
+    omit?: CashSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashSessionInclude<ExtArgs> | null
+    where?: CashSessionWhereInput
   }
 
   /**
@@ -31839,6 +31901,7 @@ export namespace Prisma {
     openedBy?: boolean | UserDefaultArgs<ExtArgs>
     closedBy?: boolean | CashSession$closedByArgs<ExtArgs>
     movements?: boolean | CashSession$movementsArgs<ExtArgs>
+    invoices?: boolean | CashSession$invoicesArgs<ExtArgs>
     _count?: boolean | CashSessionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cashSession"]>
 
@@ -31893,6 +31956,7 @@ export namespace Prisma {
     openedBy?: boolean | UserDefaultArgs<ExtArgs>
     closedBy?: boolean | CashSession$closedByArgs<ExtArgs>
     movements?: boolean | CashSession$movementsArgs<ExtArgs>
+    invoices?: boolean | CashSession$invoicesArgs<ExtArgs>
     _count?: boolean | CashSessionCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CashSessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -31913,6 +31977,7 @@ export namespace Prisma {
       openedBy: Prisma.$UserPayload<ExtArgs>
       closedBy: Prisma.$UserPayload<ExtArgs> | null
       movements: Prisma.$CashMovementPayload<ExtArgs>[]
+      invoices: Prisma.$InvoicePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -32323,6 +32388,7 @@ export namespace Prisma {
     openedBy<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     closedBy<T extends CashSession$closedByArgs<ExtArgs> = {}>(args?: Subset<T, CashSession$closedByArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     movements<T extends CashSession$movementsArgs<ExtArgs> = {}>(args?: Subset<T, CashSession$movementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CashMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    invoices<T extends CashSession$invoicesArgs<ExtArgs> = {}>(args?: Subset<T, CashSession$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -32801,6 +32867,30 @@ export namespace Prisma {
   }
 
   /**
+   * CashSession.invoices
+   */
+  export type CashSession$invoicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Invoice
+     */
+    select?: InvoiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Invoice
+     */
+    omit?: InvoiceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvoiceInclude<ExtArgs> | null
+    where?: InvoiceWhereInput
+    orderBy?: InvoiceOrderByWithRelationInput | InvoiceOrderByWithRelationInput[]
+    cursor?: InvoiceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvoiceScalarFieldEnum | InvoiceScalarFieldEnum[]
+  }
+
+  /**
    * CashSession without action
    */
   export type CashSessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -32845,6 +32935,7 @@ export namespace Prisma {
     type: $Enums.CashMovementType | null
     amount: Decimal | null
     reference: string | null
+    expenseType: $Enums.ExpenseType | null
     createdById: string | null
     requestContextId: string | null
     createdAt: Date | null
@@ -32856,6 +32947,7 @@ export namespace Prisma {
     type: $Enums.CashMovementType | null
     amount: Decimal | null
     reference: string | null
+    expenseType: $Enums.ExpenseType | null
     createdById: string | null
     requestContextId: string | null
     createdAt: Date | null
@@ -32867,6 +32959,7 @@ export namespace Prisma {
     type: number
     amount: number
     reference: number
+    expenseType: number
     createdById: number
     requestContextId: number
     createdAt: number
@@ -32888,6 +32981,7 @@ export namespace Prisma {
     type?: true
     amount?: true
     reference?: true
+    expenseType?: true
     createdById?: true
     requestContextId?: true
     createdAt?: true
@@ -32899,6 +32993,7 @@ export namespace Prisma {
     type?: true
     amount?: true
     reference?: true
+    expenseType?: true
     createdById?: true
     requestContextId?: true
     createdAt?: true
@@ -32910,6 +33005,7 @@ export namespace Prisma {
     type?: true
     amount?: true
     reference?: true
+    expenseType?: true
     createdById?: true
     requestContextId?: true
     createdAt?: true
@@ -33008,6 +33104,7 @@ export namespace Prisma {
     type: $Enums.CashMovementType
     amount: Decimal
     reference: string | null
+    expenseType: $Enums.ExpenseType | null
     createdById: string
     requestContextId: string
     createdAt: Date
@@ -33038,6 +33135,7 @@ export namespace Prisma {
     type?: boolean
     amount?: boolean
     reference?: boolean
+    expenseType?: boolean
     createdById?: boolean
     requestContextId?: boolean
     createdAt?: boolean
@@ -33052,6 +33150,7 @@ export namespace Prisma {
     type?: boolean
     amount?: boolean
     reference?: boolean
+    expenseType?: boolean
     createdById?: boolean
     requestContextId?: boolean
     createdAt?: boolean
@@ -33066,6 +33165,7 @@ export namespace Prisma {
     type?: boolean
     amount?: boolean
     reference?: boolean
+    expenseType?: boolean
     createdById?: boolean
     requestContextId?: boolean
     createdAt?: boolean
@@ -33080,12 +33180,13 @@ export namespace Prisma {
     type?: boolean
     amount?: boolean
     reference?: boolean
+    expenseType?: boolean
     createdById?: boolean
     requestContextId?: boolean
     createdAt?: boolean
   }
 
-  export type CashMovementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sessionId" | "type" | "amount" | "reference" | "createdById" | "requestContextId" | "createdAt", ExtArgs["result"]["cashMovement"]>
+  export type CashMovementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sessionId" | "type" | "amount" | "reference" | "expenseType" | "createdById" | "requestContextId" | "createdAt", ExtArgs["result"]["cashMovement"]>
   export type CashMovementInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     session?: boolean | CashSessionDefaultArgs<ExtArgs>
     createdBy?: boolean | UserDefaultArgs<ExtArgs>
@@ -33115,6 +33216,7 @@ export namespace Prisma {
       type: $Enums.CashMovementType
       amount: Prisma.Decimal
       reference: string | null
+      expenseType: $Enums.ExpenseType | null
       createdById: string
       requestContextId: string
       createdAt: Date
@@ -33549,6 +33651,7 @@ export namespace Prisma {
     readonly type: FieldRef<"CashMovement", 'CashMovementType'>
     readonly amount: FieldRef<"CashMovement", 'Decimal'>
     readonly reference: FieldRef<"CashMovement", 'String'>
+    readonly expenseType: FieldRef<"CashMovement", 'ExpenseType'>
     readonly createdById: FieldRef<"CashMovement", 'String'>
     readonly requestContextId: FieldRef<"CashMovement", 'String'>
     readonly createdAt: FieldRef<"CashMovement", 'DateTime'>
@@ -47171,6 +47274,7 @@ export namespace Prisma {
     locationId: 'locationId',
     cashierId: 'cashierId',
     registerId: 'registerId',
+    cashSessionId: 'cashSessionId',
     requestContextId: 'requestContextId',
     subtotal: 'subtotal',
     discountTotal: 'discountTotal',
@@ -47253,6 +47357,7 @@ export namespace Prisma {
     type: 'type',
     amount: 'amount',
     reference: 'reference',
+    expenseType: 'expenseType',
     createdById: 'createdById',
     requestContextId: 'requestContextId',
     createdAt: 'createdAt'
@@ -47676,6 +47781,20 @@ export namespace Prisma {
    * Reference to a field of type 'CashMovementType[]'
    */
   export type ListEnumCashMovementTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CashMovementType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ExpenseType'
+   */
+  export type EnumExpenseTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ExpenseType'>
+    
+
+
+  /**
+   * Reference to a field of type 'ExpenseType[]'
+   */
+  export type ListEnumExpenseTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ExpenseType[]'>
     
 
 
@@ -49216,6 +49335,7 @@ export namespace Prisma {
     locationId?: UuidFilter<"Invoice"> | string
     cashierId?: UuidFilter<"Invoice"> | string
     registerId?: UuidNullableFilter<"Invoice"> | string | null
+    cashSessionId?: UuidNullableFilter<"Invoice"> | string | null
     requestContextId?: UuidFilter<"Invoice"> | string
     subtotal?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
@@ -49226,6 +49346,7 @@ export namespace Prisma {
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
     cashier?: XOR<UserScalarRelationFilter, UserWhereInput>
     register?: XOR<CashRegisterNullableScalarRelationFilter, CashRegisterWhereInput> | null
+    cashSession?: XOR<CashSessionNullableScalarRelationFilter, CashSessionWhereInput> | null
     requestContext?: XOR<RequestContextScalarRelationFilter, RequestContextWhereInput>
     lines?: InvoiceLineListRelationFilter
     payments?: PaymentListRelationFilter
@@ -49242,6 +49363,7 @@ export namespace Prisma {
     locationId?: SortOrder
     cashierId?: SortOrder
     registerId?: SortOrderInput | SortOrder
+    cashSessionId?: SortOrderInput | SortOrder
     requestContextId?: SortOrder
     subtotal?: SortOrder
     discountTotal?: SortOrder
@@ -49252,6 +49374,7 @@ export namespace Prisma {
     location?: LocationOrderByWithRelationInput
     cashier?: UserOrderByWithRelationInput
     register?: CashRegisterOrderByWithRelationInput
+    cashSession?: CashSessionOrderByWithRelationInput
     requestContext?: RequestContextOrderByWithRelationInput
     lines?: InvoiceLineOrderByRelationAggregateInput
     payments?: PaymentOrderByRelationAggregateInput
@@ -49272,6 +49395,7 @@ export namespace Prisma {
     locationId?: UuidFilter<"Invoice"> | string
     cashierId?: UuidFilter<"Invoice"> | string
     registerId?: UuidNullableFilter<"Invoice"> | string | null
+    cashSessionId?: UuidNullableFilter<"Invoice"> | string | null
     requestContextId?: UuidFilter<"Invoice"> | string
     subtotal?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
@@ -49282,6 +49406,7 @@ export namespace Prisma {
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
     cashier?: XOR<UserScalarRelationFilter, UserWhereInput>
     register?: XOR<CashRegisterNullableScalarRelationFilter, CashRegisterWhereInput> | null
+    cashSession?: XOR<CashSessionNullableScalarRelationFilter, CashSessionWhereInput> | null
     requestContext?: XOR<RequestContextScalarRelationFilter, RequestContextWhereInput>
     lines?: InvoiceLineListRelationFilter
     payments?: PaymentListRelationFilter
@@ -49298,6 +49423,7 @@ export namespace Prisma {
     locationId?: SortOrder
     cashierId?: SortOrder
     registerId?: SortOrderInput | SortOrder
+    cashSessionId?: SortOrderInput | SortOrder
     requestContextId?: SortOrder
     subtotal?: SortOrder
     discountTotal?: SortOrder
@@ -49323,6 +49449,7 @@ export namespace Prisma {
     locationId?: UuidWithAggregatesFilter<"Invoice"> | string
     cashierId?: UuidWithAggregatesFilter<"Invoice"> | string
     registerId?: UuidNullableWithAggregatesFilter<"Invoice"> | string | null
+    cashSessionId?: UuidNullableWithAggregatesFilter<"Invoice"> | string | null
     requestContextId?: UuidWithAggregatesFilter<"Invoice"> | string
     subtotal?: DecimalWithAggregatesFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalWithAggregatesFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
@@ -49628,6 +49755,7 @@ export namespace Prisma {
     openedBy?: XOR<UserScalarRelationFilter, UserWhereInput>
     closedBy?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     movements?: CashMovementListRelationFilter
+    invoices?: InvoiceListRelationFilter
   }
 
   export type CashSessionOrderByWithRelationInput = {
@@ -49645,6 +49773,7 @@ export namespace Prisma {
     openedBy?: UserOrderByWithRelationInput
     closedBy?: UserOrderByWithRelationInput
     movements?: CashMovementOrderByRelationAggregateInput
+    invoices?: InvoiceOrderByRelationAggregateInput
   }
 
   export type CashSessionWhereUniqueInput = Prisma.AtLeast<{
@@ -49665,6 +49794,7 @@ export namespace Prisma {
     openedBy?: XOR<UserScalarRelationFilter, UserWhereInput>
     closedBy?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     movements?: CashMovementListRelationFilter
+    invoices?: InvoiceListRelationFilter
   }, "id">
 
   export type CashSessionOrderByWithAggregationInput = {
@@ -49710,6 +49840,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFilter<"CashMovement"> | $Enums.CashMovementType
     amount?: DecimalFilter<"CashMovement"> | Decimal | DecimalJsLike | number | string
     reference?: StringNullableFilter<"CashMovement"> | string | null
+    expenseType?: EnumExpenseTypeNullableFilter<"CashMovement"> | $Enums.ExpenseType | null
     createdById?: UuidFilter<"CashMovement"> | string
     requestContextId?: UuidFilter<"CashMovement"> | string
     createdAt?: DateTimeFilter<"CashMovement"> | Date | string
@@ -49724,6 +49855,7 @@ export namespace Prisma {
     type?: SortOrder
     amount?: SortOrder
     reference?: SortOrderInput | SortOrder
+    expenseType?: SortOrderInput | SortOrder
     createdById?: SortOrder
     requestContextId?: SortOrder
     createdAt?: SortOrder
@@ -49741,6 +49873,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFilter<"CashMovement"> | $Enums.CashMovementType
     amount?: DecimalFilter<"CashMovement"> | Decimal | DecimalJsLike | number | string
     reference?: StringNullableFilter<"CashMovement"> | string | null
+    expenseType?: EnumExpenseTypeNullableFilter<"CashMovement"> | $Enums.ExpenseType | null
     createdById?: UuidFilter<"CashMovement"> | string
     requestContextId?: UuidFilter<"CashMovement"> | string
     createdAt?: DateTimeFilter<"CashMovement"> | Date | string
@@ -49755,6 +49888,7 @@ export namespace Prisma {
     type?: SortOrder
     amount?: SortOrder
     reference?: SortOrderInput | SortOrder
+    expenseType?: SortOrderInput | SortOrder
     createdById?: SortOrder
     requestContextId?: SortOrder
     createdAt?: SortOrder
@@ -49774,6 +49908,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeWithAggregatesFilter<"CashMovement"> | $Enums.CashMovementType
     amount?: DecimalWithAggregatesFilter<"CashMovement"> | Decimal | DecimalJsLike | number | string
     reference?: StringNullableWithAggregatesFilter<"CashMovement"> | string | null
+    expenseType?: EnumExpenseTypeNullableWithAggregatesFilter<"CashMovement"> | $Enums.ExpenseType | null
     createdById?: UuidWithAggregatesFilter<"CashMovement"> | string
     requestContextId?: UuidWithAggregatesFilter<"CashMovement"> | string
     createdAt?: DateTimeWithAggregatesFilter<"CashMovement"> | Date | string
@@ -52160,6 +52295,7 @@ export namespace Prisma {
     location: LocationCreateNestedOneWithoutInvoicesInput
     cashier: UserCreateNestedOneWithoutInvoicesCashierInput
     register?: CashRegisterCreateNestedOneWithoutInvoicesInput
+    cashSession?: CashSessionCreateNestedOneWithoutInvoicesInput
     requestContext: RequestContextCreateNestedOneWithoutInvoicesInput
     lines?: InvoiceLineCreateNestedManyWithoutInvoiceInput
     payments?: PaymentCreateNestedManyWithoutInvoiceInput
@@ -52176,6 +52312,7 @@ export namespace Prisma {
     locationId: string
     cashierId: string
     registerId?: string | null
+    cashSessionId?: string | null
     requestContextId: string
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
@@ -52200,6 +52337,7 @@ export namespace Prisma {
     location?: LocationUpdateOneRequiredWithoutInvoicesNestedInput
     cashier?: UserUpdateOneRequiredWithoutInvoicesCashierNestedInput
     register?: CashRegisterUpdateOneWithoutInvoicesNestedInput
+    cashSession?: CashSessionUpdateOneWithoutInvoicesNestedInput
     requestContext?: RequestContextUpdateOneRequiredWithoutInvoicesNestedInput
     lines?: InvoiceLineUpdateManyWithoutInvoiceNestedInput
     payments?: PaymentUpdateManyWithoutInvoiceNestedInput
@@ -52216,6 +52354,7 @@ export namespace Prisma {
     locationId?: StringFieldUpdateOperationsInput | string
     cashierId?: StringFieldUpdateOperationsInput | string
     registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -52236,6 +52375,7 @@ export namespace Prisma {
     locationId: string
     cashierId: string
     registerId?: string | null
+    cashSessionId?: string | null
     requestContextId: string
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
@@ -52264,6 +52404,7 @@ export namespace Prisma {
     locationId?: StringFieldUpdateOperationsInput | string
     cashierId?: StringFieldUpdateOperationsInput | string
     registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -52564,6 +52705,7 @@ export namespace Prisma {
     openedBy: UserCreateNestedOneWithoutCashSessionsOpenInput
     closedBy?: UserCreateNestedOneWithoutCashSessionsCloseInput
     movements?: CashMovementCreateNestedManyWithoutSessionInput
+    invoices?: InvoiceCreateNestedManyWithoutCashSessionInput
   }
 
   export type CashSessionUncheckedCreateInput = {
@@ -52578,6 +52720,7 @@ export namespace Prisma {
     systemTotal?: Decimal | DecimalJsLike | number | string | null
     variance?: Decimal | DecimalJsLike | number | string | null
     movements?: CashMovementUncheckedCreateNestedManyWithoutSessionInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutCashSessionInput
   }
 
   export type CashSessionUpdateInput = {
@@ -52592,6 +52735,7 @@ export namespace Prisma {
     openedBy?: UserUpdateOneRequiredWithoutCashSessionsOpenNestedInput
     closedBy?: UserUpdateOneWithoutCashSessionsCloseNestedInput
     movements?: CashMovementUpdateManyWithoutSessionNestedInput
+    invoices?: InvoiceUpdateManyWithoutCashSessionNestedInput
   }
 
   export type CashSessionUncheckedUpdateInput = {
@@ -52606,6 +52750,7 @@ export namespace Prisma {
     systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     movements?: CashMovementUncheckedUpdateManyWithoutSessionNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutCashSessionNestedInput
   }
 
   export type CashSessionCreateManyInput = {
@@ -52649,6 +52794,7 @@ export namespace Prisma {
     type: $Enums.CashMovementType
     amount: Decimal | DecimalJsLike | number | string
     reference?: string | null
+    expenseType?: $Enums.ExpenseType | null
     createdAt?: Date | string
     session: CashSessionCreateNestedOneWithoutMovementsInput
     createdBy: UserCreateNestedOneWithoutCashMovementsInput
@@ -52661,6 +52807,7 @@ export namespace Prisma {
     type: $Enums.CashMovementType
     amount: Decimal | DecimalJsLike | number | string
     reference?: string | null
+    expenseType?: $Enums.ExpenseType | null
     createdById: string
     requestContextId: string
     createdAt?: Date | string
@@ -52671,6 +52818,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
+    expenseType?: NullableEnumExpenseTypeFieldUpdateOperationsInput | $Enums.ExpenseType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     session?: CashSessionUpdateOneRequiredWithoutMovementsNestedInput
     createdBy?: UserUpdateOneRequiredWithoutCashMovementsNestedInput
@@ -52683,6 +52831,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
+    expenseType?: NullableEnumExpenseTypeFieldUpdateOperationsInput | $Enums.ExpenseType | null
     createdById?: StringFieldUpdateOperationsInput | string
     requestContextId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52694,6 +52843,7 @@ export namespace Prisma {
     type: $Enums.CashMovementType
     amount: Decimal | DecimalJsLike | number | string
     reference?: string | null
+    expenseType?: $Enums.ExpenseType | null
     createdById: string
     requestContextId: string
     createdAt?: Date | string
@@ -52704,6 +52854,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
+    expenseType?: NullableEnumExpenseTypeFieldUpdateOperationsInput | $Enums.ExpenseType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -52713,6 +52864,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
+    expenseType?: NullableEnumExpenseTypeFieldUpdateOperationsInput | $Enums.ExpenseType | null
     createdById?: StringFieldUpdateOperationsInput | string
     requestContextId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -54928,6 +55080,11 @@ export namespace Prisma {
     isNot?: CashRegisterWhereInput | null
   }
 
+  export type CashSessionNullableScalarRelationFilter = {
+    is?: CashSessionWhereInput | null
+    isNot?: CashSessionWhereInput | null
+  }
+
   export type InvoiceInvoiceNoLocationIdCompoundUniqueInput = {
     invoiceNo: string
     locationId: string
@@ -54943,6 +55100,7 @@ export namespace Prisma {
     locationId?: SortOrder
     cashierId?: SortOrder
     registerId?: SortOrder
+    cashSessionId?: SortOrder
     requestContextId?: SortOrder
     subtotal?: SortOrder
     discountTotal?: SortOrder
@@ -54967,6 +55125,7 @@ export namespace Prisma {
     locationId?: SortOrder
     cashierId?: SortOrder
     registerId?: SortOrder
+    cashSessionId?: SortOrder
     requestContextId?: SortOrder
     subtotal?: SortOrder
     discountTotal?: SortOrder
@@ -54984,6 +55143,7 @@ export namespace Prisma {
     locationId?: SortOrder
     cashierId?: SortOrder
     registerId?: SortOrder
+    cashSessionId?: SortOrder
     requestContextId?: SortOrder
     subtotal?: SortOrder
     discountTotal?: SortOrder
@@ -55354,6 +55514,13 @@ export namespace Prisma {
     not?: NestedEnumCashMovementTypeFilter<$PrismaModel> | $Enums.CashMovementType
   }
 
+  export type EnumExpenseTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.ExpenseType | EnumExpenseTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ExpenseType[] | ListEnumExpenseTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ExpenseType[] | ListEnumExpenseTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumExpenseTypeNullableFilter<$PrismaModel> | $Enums.ExpenseType | null
+  }
+
   export type CashSessionScalarRelationFilter = {
     is?: CashSessionWhereInput
     isNot?: CashSessionWhereInput
@@ -55365,6 +55532,7 @@ export namespace Prisma {
     type?: SortOrder
     amount?: SortOrder
     reference?: SortOrder
+    expenseType?: SortOrder
     createdById?: SortOrder
     requestContextId?: SortOrder
     createdAt?: SortOrder
@@ -55380,6 +55548,7 @@ export namespace Prisma {
     type?: SortOrder
     amount?: SortOrder
     reference?: SortOrder
+    expenseType?: SortOrder
     createdById?: SortOrder
     requestContextId?: SortOrder
     createdAt?: SortOrder
@@ -55391,6 +55560,7 @@ export namespace Prisma {
     type?: SortOrder
     amount?: SortOrder
     reference?: SortOrder
+    expenseType?: SortOrder
     createdById?: SortOrder
     requestContextId?: SortOrder
     createdAt?: SortOrder
@@ -55408,6 +55578,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCashMovementTypeFilter<$PrismaModel>
     _max?: NestedEnumCashMovementTypeFilter<$PrismaModel>
+  }
+
+  export type EnumExpenseTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ExpenseType | EnumExpenseTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ExpenseType[] | ListEnumExpenseTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ExpenseType[] | ListEnumExpenseTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumExpenseTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.ExpenseType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumExpenseTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumExpenseTypeNullableFilter<$PrismaModel>
   }
 
   export type InventoryProductCountOrderByAggregateInput = {
@@ -58506,6 +58686,12 @@ export namespace Prisma {
     connect?: CashRegisterWhereUniqueInput
   }
 
+  export type CashSessionCreateNestedOneWithoutInvoicesInput = {
+    create?: XOR<CashSessionCreateWithoutInvoicesInput, CashSessionUncheckedCreateWithoutInvoicesInput>
+    connectOrCreate?: CashSessionCreateOrConnectWithoutInvoicesInput
+    connect?: CashSessionWhereUniqueInput
+  }
+
   export type RequestContextCreateNestedOneWithoutInvoicesInput = {
     create?: XOR<RequestContextCreateWithoutInvoicesInput, RequestContextUncheckedCreateWithoutInvoicesInput>
     connectOrCreate?: RequestContextCreateOrConnectWithoutInvoicesInput
@@ -58602,6 +58788,16 @@ export namespace Prisma {
     delete?: CashRegisterWhereInput | boolean
     connect?: CashRegisterWhereUniqueInput
     update?: XOR<XOR<CashRegisterUpdateToOneWithWhereWithoutInvoicesInput, CashRegisterUpdateWithoutInvoicesInput>, CashRegisterUncheckedUpdateWithoutInvoicesInput>
+  }
+
+  export type CashSessionUpdateOneWithoutInvoicesNestedInput = {
+    create?: XOR<CashSessionCreateWithoutInvoicesInput, CashSessionUncheckedCreateWithoutInvoicesInput>
+    connectOrCreate?: CashSessionCreateOrConnectWithoutInvoicesInput
+    upsert?: CashSessionUpsertWithoutInvoicesInput
+    disconnect?: CashSessionWhereInput | boolean
+    delete?: CashSessionWhereInput | boolean
+    connect?: CashSessionWhereUniqueInput
+    update?: XOR<XOR<CashSessionUpdateToOneWithWhereWithoutInvoicesInput, CashSessionUpdateWithoutInvoicesInput>, CashSessionUncheckedUpdateWithoutInvoicesInput>
   }
 
   export type RequestContextUpdateOneRequiredWithoutInvoicesNestedInput = {
@@ -58921,11 +59117,25 @@ export namespace Prisma {
     connect?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
   }
 
+  export type InvoiceCreateNestedManyWithoutCashSessionInput = {
+    create?: XOR<InvoiceCreateWithoutCashSessionInput, InvoiceUncheckedCreateWithoutCashSessionInput> | InvoiceCreateWithoutCashSessionInput[] | InvoiceUncheckedCreateWithoutCashSessionInput[]
+    connectOrCreate?: InvoiceCreateOrConnectWithoutCashSessionInput | InvoiceCreateOrConnectWithoutCashSessionInput[]
+    createMany?: InvoiceCreateManyCashSessionInputEnvelope
+    connect?: InvoiceWhereUniqueInput | InvoiceWhereUniqueInput[]
+  }
+
   export type CashMovementUncheckedCreateNestedManyWithoutSessionInput = {
     create?: XOR<CashMovementCreateWithoutSessionInput, CashMovementUncheckedCreateWithoutSessionInput> | CashMovementCreateWithoutSessionInput[] | CashMovementUncheckedCreateWithoutSessionInput[]
     connectOrCreate?: CashMovementCreateOrConnectWithoutSessionInput | CashMovementCreateOrConnectWithoutSessionInput[]
     createMany?: CashMovementCreateManySessionInputEnvelope
     connect?: CashMovementWhereUniqueInput | CashMovementWhereUniqueInput[]
+  }
+
+  export type InvoiceUncheckedCreateNestedManyWithoutCashSessionInput = {
+    create?: XOR<InvoiceCreateWithoutCashSessionInput, InvoiceUncheckedCreateWithoutCashSessionInput> | InvoiceCreateWithoutCashSessionInput[] | InvoiceUncheckedCreateWithoutCashSessionInput[]
+    connectOrCreate?: InvoiceCreateOrConnectWithoutCashSessionInput | InvoiceCreateOrConnectWithoutCashSessionInput[]
+    createMany?: InvoiceCreateManyCashSessionInputEnvelope
+    connect?: InvoiceWhereUniqueInput | InvoiceWhereUniqueInput[]
   }
 
   export type CashRegisterUpdateOneRequiredWithoutSessionsNestedInput = {
@@ -58968,6 +59178,20 @@ export namespace Prisma {
     deleteMany?: CashMovementScalarWhereInput | CashMovementScalarWhereInput[]
   }
 
+  export type InvoiceUpdateManyWithoutCashSessionNestedInput = {
+    create?: XOR<InvoiceCreateWithoutCashSessionInput, InvoiceUncheckedCreateWithoutCashSessionInput> | InvoiceCreateWithoutCashSessionInput[] | InvoiceUncheckedCreateWithoutCashSessionInput[]
+    connectOrCreate?: InvoiceCreateOrConnectWithoutCashSessionInput | InvoiceCreateOrConnectWithoutCashSessionInput[]
+    upsert?: InvoiceUpsertWithWhereUniqueWithoutCashSessionInput | InvoiceUpsertWithWhereUniqueWithoutCashSessionInput[]
+    createMany?: InvoiceCreateManyCashSessionInputEnvelope
+    set?: InvoiceWhereUniqueInput | InvoiceWhereUniqueInput[]
+    disconnect?: InvoiceWhereUniqueInput | InvoiceWhereUniqueInput[]
+    delete?: InvoiceWhereUniqueInput | InvoiceWhereUniqueInput[]
+    connect?: InvoiceWhereUniqueInput | InvoiceWhereUniqueInput[]
+    update?: InvoiceUpdateWithWhereUniqueWithoutCashSessionInput | InvoiceUpdateWithWhereUniqueWithoutCashSessionInput[]
+    updateMany?: InvoiceUpdateManyWithWhereWithoutCashSessionInput | InvoiceUpdateManyWithWhereWithoutCashSessionInput[]
+    deleteMany?: InvoiceScalarWhereInput | InvoiceScalarWhereInput[]
+  }
+
   export type CashMovementUncheckedUpdateManyWithoutSessionNestedInput = {
     create?: XOR<CashMovementCreateWithoutSessionInput, CashMovementUncheckedCreateWithoutSessionInput> | CashMovementCreateWithoutSessionInput[] | CashMovementUncheckedCreateWithoutSessionInput[]
     connectOrCreate?: CashMovementCreateOrConnectWithoutSessionInput | CashMovementCreateOrConnectWithoutSessionInput[]
@@ -58980,6 +59204,20 @@ export namespace Prisma {
     update?: CashMovementUpdateWithWhereUniqueWithoutSessionInput | CashMovementUpdateWithWhereUniqueWithoutSessionInput[]
     updateMany?: CashMovementUpdateManyWithWhereWithoutSessionInput | CashMovementUpdateManyWithWhereWithoutSessionInput[]
     deleteMany?: CashMovementScalarWhereInput | CashMovementScalarWhereInput[]
+  }
+
+  export type InvoiceUncheckedUpdateManyWithoutCashSessionNestedInput = {
+    create?: XOR<InvoiceCreateWithoutCashSessionInput, InvoiceUncheckedCreateWithoutCashSessionInput> | InvoiceCreateWithoutCashSessionInput[] | InvoiceUncheckedCreateWithoutCashSessionInput[]
+    connectOrCreate?: InvoiceCreateOrConnectWithoutCashSessionInput | InvoiceCreateOrConnectWithoutCashSessionInput[]
+    upsert?: InvoiceUpsertWithWhereUniqueWithoutCashSessionInput | InvoiceUpsertWithWhereUniqueWithoutCashSessionInput[]
+    createMany?: InvoiceCreateManyCashSessionInputEnvelope
+    set?: InvoiceWhereUniqueInput | InvoiceWhereUniqueInput[]
+    disconnect?: InvoiceWhereUniqueInput | InvoiceWhereUniqueInput[]
+    delete?: InvoiceWhereUniqueInput | InvoiceWhereUniqueInput[]
+    connect?: InvoiceWhereUniqueInput | InvoiceWhereUniqueInput[]
+    update?: InvoiceUpdateWithWhereUniqueWithoutCashSessionInput | InvoiceUpdateWithWhereUniqueWithoutCashSessionInput[]
+    updateMany?: InvoiceUpdateManyWithWhereWithoutCashSessionInput | InvoiceUpdateManyWithWhereWithoutCashSessionInput[]
+    deleteMany?: InvoiceScalarWhereInput | InvoiceScalarWhereInput[]
   }
 
   export type CashSessionCreateNestedOneWithoutMovementsInput = {
@@ -59002,6 +59240,10 @@ export namespace Prisma {
 
   export type EnumCashMovementTypeFieldUpdateOperationsInput = {
     set?: $Enums.CashMovementType
+  }
+
+  export type NullableEnumExpenseTypeFieldUpdateOperationsInput = {
+    set?: $Enums.ExpenseType | null
   }
 
   export type CashSessionUpdateOneRequiredWithoutMovementsNestedInput = {
@@ -60459,6 +60701,13 @@ export namespace Prisma {
     not?: NestedEnumCashMovementTypeFilter<$PrismaModel> | $Enums.CashMovementType
   }
 
+  export type NestedEnumExpenseTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.ExpenseType | EnumExpenseTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ExpenseType[] | ListEnumExpenseTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ExpenseType[] | ListEnumExpenseTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumExpenseTypeNullableFilter<$PrismaModel> | $Enums.ExpenseType | null
+  }
+
   export type NestedEnumCashMovementTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.CashMovementType | EnumCashMovementTypeFieldRefInput<$PrismaModel>
     in?: $Enums.CashMovementType[] | ListEnumCashMovementTypeFieldRefInput<$PrismaModel>
@@ -60467,6 +60716,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCashMovementTypeFilter<$PrismaModel>
     _max?: NestedEnumCashMovementTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumExpenseTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ExpenseType | EnumExpenseTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ExpenseType[] | ListEnumExpenseTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ExpenseType[] | ListEnumExpenseTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumExpenseTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.ExpenseType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumExpenseTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumExpenseTypeNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumStockReasonFilter<$PrismaModel = never> = {
@@ -60955,6 +61214,7 @@ export namespace Prisma {
     preclinic?: PreclinicCreateNestedOneWithoutInvoicesInput
     location: LocationCreateNestedOneWithoutInvoicesInput
     register?: CashRegisterCreateNestedOneWithoutInvoicesInput
+    cashSession?: CashSessionCreateNestedOneWithoutInvoicesInput
     requestContext: RequestContextCreateNestedOneWithoutInvoicesInput
     lines?: InvoiceLineCreateNestedManyWithoutInvoiceInput
     payments?: PaymentCreateNestedManyWithoutInvoiceInput
@@ -60970,6 +61230,7 @@ export namespace Prisma {
     invoiceAt: Date | string
     locationId: string
     registerId?: string | null
+    cashSessionId?: string | null
     requestContextId: string
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
@@ -61039,6 +61300,7 @@ export namespace Prisma {
     register: CashRegisterCreateNestedOneWithoutSessionsInput
     closedBy?: UserCreateNestedOneWithoutCashSessionsCloseInput
     movements?: CashMovementCreateNestedManyWithoutSessionInput
+    invoices?: InvoiceCreateNestedManyWithoutCashSessionInput
   }
 
   export type CashSessionUncheckedCreateWithoutOpenedByInput = {
@@ -61052,6 +61314,7 @@ export namespace Prisma {
     systemTotal?: Decimal | DecimalJsLike | number | string | null
     variance?: Decimal | DecimalJsLike | number | string | null
     movements?: CashMovementUncheckedCreateNestedManyWithoutSessionInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutCashSessionInput
   }
 
   export type CashSessionCreateOrConnectWithoutOpenedByInput = {
@@ -61075,6 +61338,7 @@ export namespace Prisma {
     register: CashRegisterCreateNestedOneWithoutSessionsInput
     openedBy: UserCreateNestedOneWithoutCashSessionsOpenInput
     movements?: CashMovementCreateNestedManyWithoutSessionInput
+    invoices?: InvoiceCreateNestedManyWithoutCashSessionInput
   }
 
   export type CashSessionUncheckedCreateWithoutClosedByInput = {
@@ -61088,6 +61352,7 @@ export namespace Prisma {
     systemTotal?: Decimal | DecimalJsLike | number | string | null
     variance?: Decimal | DecimalJsLike | number | string | null
     movements?: CashMovementUncheckedCreateNestedManyWithoutSessionInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutCashSessionInput
   }
 
   export type CashSessionCreateOrConnectWithoutClosedByInput = {
@@ -61105,6 +61370,7 @@ export namespace Prisma {
     type: $Enums.CashMovementType
     amount: Decimal | DecimalJsLike | number | string
     reference?: string | null
+    expenseType?: $Enums.ExpenseType | null
     createdAt?: Date | string
     session: CashSessionCreateNestedOneWithoutMovementsInput
     requestContext: RequestContextCreateNestedOneWithoutCashMovesInput
@@ -61116,6 +61382,7 @@ export namespace Prisma {
     type: $Enums.CashMovementType
     amount: Decimal | DecimalJsLike | number | string
     reference?: string | null
+    expenseType?: $Enums.ExpenseType | null
     requestContextId: string
     createdAt?: Date | string
   }
@@ -61501,6 +61768,7 @@ export namespace Prisma {
     locationId?: UuidFilter<"Invoice"> | string
     cashierId?: UuidFilter<"Invoice"> | string
     registerId?: UuidNullableFilter<"Invoice"> | string | null
+    cashSessionId?: UuidNullableFilter<"Invoice"> | string | null
     requestContextId?: UuidFilter<"Invoice"> | string
     subtotal?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
@@ -61615,6 +61883,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFilter<"CashMovement"> | $Enums.CashMovementType
     amount?: DecimalFilter<"CashMovement"> | Decimal | DecimalJsLike | number | string
     reference?: StringNullableFilter<"CashMovement"> | string | null
+    expenseType?: EnumExpenseTypeNullableFilter<"CashMovement"> | $Enums.ExpenseType | null
     createdById?: UuidFilter<"CashMovement"> | string
     requestContextId?: UuidFilter<"CashMovement"> | string
     createdAt?: DateTimeFilter<"CashMovement"> | Date | string
@@ -62038,6 +62307,7 @@ export namespace Prisma {
     preclinic?: PreclinicCreateNestedOneWithoutInvoicesInput
     cashier: UserCreateNestedOneWithoutInvoicesCashierInput
     register?: CashRegisterCreateNestedOneWithoutInvoicesInput
+    cashSession?: CashSessionCreateNestedOneWithoutInvoicesInput
     requestContext: RequestContextCreateNestedOneWithoutInvoicesInput
     lines?: InvoiceLineCreateNestedManyWithoutInvoiceInput
     payments?: PaymentCreateNestedManyWithoutInvoiceInput
@@ -62053,6 +62323,7 @@ export namespace Prisma {
     invoiceAt: Date | string
     cashierId: string
     registerId?: string | null
+    cashSessionId?: string | null
     requestContextId: string
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
@@ -62295,6 +62566,7 @@ export namespace Prisma {
     openedBy: UserCreateNestedOneWithoutCashSessionsOpenInput
     closedBy?: UserCreateNestedOneWithoutCashSessionsCloseInput
     movements?: CashMovementCreateNestedManyWithoutSessionInput
+    invoices?: InvoiceCreateNestedManyWithoutCashSessionInput
   }
 
   export type CashSessionUncheckedCreateWithoutRegisterInput = {
@@ -62308,6 +62580,7 @@ export namespace Prisma {
     systemTotal?: Decimal | DecimalJsLike | number | string | null
     variance?: Decimal | DecimalJsLike | number | string | null
     movements?: CashMovementUncheckedCreateNestedManyWithoutSessionInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutCashSessionInput
   }
 
   export type CashSessionCreateOrConnectWithoutRegisterInput = {
@@ -62333,6 +62606,7 @@ export namespace Prisma {
     preclinic?: PreclinicCreateNestedOneWithoutInvoicesInput
     location: LocationCreateNestedOneWithoutInvoicesInput
     cashier: UserCreateNestedOneWithoutInvoicesCashierInput
+    cashSession?: CashSessionCreateNestedOneWithoutInvoicesInput
     requestContext: RequestContextCreateNestedOneWithoutInvoicesInput
     lines?: InvoiceLineCreateNestedManyWithoutInvoiceInput
     payments?: PaymentCreateNestedManyWithoutInvoiceInput
@@ -62348,6 +62622,7 @@ export namespace Prisma {
     invoiceAt: Date | string
     locationId: string
     cashierId: string
+    cashSessionId?: string | null
     requestContextId: string
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
@@ -62975,6 +63250,7 @@ export namespace Prisma {
     location: LocationCreateNestedOneWithoutInvoicesInput
     cashier: UserCreateNestedOneWithoutInvoicesCashierInput
     register?: CashRegisterCreateNestedOneWithoutInvoicesInput
+    cashSession?: CashSessionCreateNestedOneWithoutInvoicesInput
     requestContext: RequestContextCreateNestedOneWithoutInvoicesInput
     lines?: InvoiceLineCreateNestedManyWithoutInvoiceInput
     payments?: PaymentCreateNestedManyWithoutInvoiceInput
@@ -62990,6 +63266,7 @@ export namespace Prisma {
     locationId: string
     cashierId: string
     registerId?: string | null
+    cashSessionId?: string | null
     requestContextId: string
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
@@ -63535,6 +63812,7 @@ export namespace Prisma {
     location: LocationCreateNestedOneWithoutInvoicesInput
     cashier: UserCreateNestedOneWithoutInvoicesCashierInput
     register?: CashRegisterCreateNestedOneWithoutInvoicesInput
+    cashSession?: CashSessionCreateNestedOneWithoutInvoicesInput
     lines?: InvoiceLineCreateNestedManyWithoutInvoiceInput
     payments?: PaymentCreateNestedManyWithoutInvoiceInput
     labOrders?: LabOrderCreateNestedManyWithoutInvoiceInput
@@ -63550,6 +63828,7 @@ export namespace Prisma {
     locationId: string
     cashierId: string
     registerId?: string | null
+    cashSessionId?: string | null
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
     taxTotal: Decimal | DecimalJsLike | number | string
@@ -63612,6 +63891,7 @@ export namespace Prisma {
     type: $Enums.CashMovementType
     amount: Decimal | DecimalJsLike | number | string
     reference?: string | null
+    expenseType?: $Enums.ExpenseType | null
     createdAt?: Date | string
     session: CashSessionCreateNestedOneWithoutMovementsInput
     createdBy: UserCreateNestedOneWithoutCashMovementsInput
@@ -63623,6 +63903,7 @@ export namespace Prisma {
     type: $Enums.CashMovementType
     amount: Decimal | DecimalJsLike | number | string
     reference?: string | null
+    expenseType?: $Enums.ExpenseType | null
     createdById: string
     createdAt?: Date | string
   }
@@ -64245,6 +64526,7 @@ export namespace Prisma {
     location: LocationCreateNestedOneWithoutInvoicesInput
     cashier: UserCreateNestedOneWithoutInvoicesCashierInput
     register?: CashRegisterCreateNestedOneWithoutInvoicesInput
+    cashSession?: CashSessionCreateNestedOneWithoutInvoicesInput
     requestContext: RequestContextCreateNestedOneWithoutInvoicesInput
     lines?: InvoiceLineCreateNestedManyWithoutInvoiceInput
     payments?: PaymentCreateNestedManyWithoutInvoiceInput
@@ -64260,6 +64542,7 @@ export namespace Prisma {
     locationId: string
     cashierId: string
     registerId?: string | null
+    cashSessionId?: string | null
     requestContextId: string
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
@@ -65730,6 +66013,39 @@ export namespace Prisma {
     create: XOR<CashRegisterCreateWithoutInvoicesInput, CashRegisterUncheckedCreateWithoutInvoicesInput>
   }
 
+  export type CashSessionCreateWithoutInvoicesInput = {
+    id?: string
+    openedAt?: Date | string
+    openingFloat: Decimal | DecimalJsLike | number | string
+    closedAt?: Date | string | null
+    declaredTotal?: Decimal | DecimalJsLike | number | string | null
+    systemTotal?: Decimal | DecimalJsLike | number | string | null
+    variance?: Decimal | DecimalJsLike | number | string | null
+    register: CashRegisterCreateNestedOneWithoutSessionsInput
+    openedBy: UserCreateNestedOneWithoutCashSessionsOpenInput
+    closedBy?: UserCreateNestedOneWithoutCashSessionsCloseInput
+    movements?: CashMovementCreateNestedManyWithoutSessionInput
+  }
+
+  export type CashSessionUncheckedCreateWithoutInvoicesInput = {
+    id?: string
+    registerId: string
+    openedById: string
+    openedAt?: Date | string
+    openingFloat: Decimal | DecimalJsLike | number | string
+    closedById?: string | null
+    closedAt?: Date | string | null
+    declaredTotal?: Decimal | DecimalJsLike | number | string | null
+    systemTotal?: Decimal | DecimalJsLike | number | string | null
+    variance?: Decimal | DecimalJsLike | number | string | null
+    movements?: CashMovementUncheckedCreateNestedManyWithoutSessionInput
+  }
+
+  export type CashSessionCreateOrConnectWithoutInvoicesInput = {
+    where: CashSessionWhereUniqueInput
+    create: XOR<CashSessionCreateWithoutInvoicesInput, CashSessionUncheckedCreateWithoutInvoicesInput>
+  }
+
   export type RequestContextCreateWithoutInvoicesInput = {
     id?: string
     occurredAt?: Date | string
@@ -66146,6 +66462,45 @@ export namespace Prisma {
     sessions?: CashSessionUncheckedUpdateManyWithoutRegisterNestedInput
   }
 
+  export type CashSessionUpsertWithoutInvoicesInput = {
+    update: XOR<CashSessionUpdateWithoutInvoicesInput, CashSessionUncheckedUpdateWithoutInvoicesInput>
+    create: XOR<CashSessionCreateWithoutInvoicesInput, CashSessionUncheckedCreateWithoutInvoicesInput>
+    where?: CashSessionWhereInput
+  }
+
+  export type CashSessionUpdateToOneWithWhereWithoutInvoicesInput = {
+    where?: CashSessionWhereInput
+    data: XOR<CashSessionUpdateWithoutInvoicesInput, CashSessionUncheckedUpdateWithoutInvoicesInput>
+  }
+
+  export type CashSessionUpdateWithoutInvoicesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    openingFloat?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    register?: CashRegisterUpdateOneRequiredWithoutSessionsNestedInput
+    openedBy?: UserUpdateOneRequiredWithoutCashSessionsOpenNestedInput
+    closedBy?: UserUpdateOneWithoutCashSessionsCloseNestedInput
+    movements?: CashMovementUpdateManyWithoutSessionNestedInput
+  }
+
+  export type CashSessionUncheckedUpdateWithoutInvoicesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registerId?: StringFieldUpdateOperationsInput | string
+    openedById?: StringFieldUpdateOperationsInput | string
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    openingFloat?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    movements?: CashMovementUncheckedUpdateManyWithoutSessionNestedInput
+  }
+
   export type RequestContextUpsertWithoutInvoicesInput = {
     update: XOR<RequestContextUpdateWithoutInvoicesInput, RequestContextUncheckedUpdateWithoutInvoicesInput>
     create: XOR<RequestContextCreateWithoutInvoicesInput, RequestContextUncheckedCreateWithoutInvoicesInput>
@@ -66261,6 +66616,7 @@ export namespace Prisma {
     location: LocationCreateNestedOneWithoutInvoicesInput
     cashier: UserCreateNestedOneWithoutInvoicesCashierInput
     register?: CashRegisterCreateNestedOneWithoutInvoicesInput
+    cashSession?: CashSessionCreateNestedOneWithoutInvoicesInput
     requestContext: RequestContextCreateNestedOneWithoutInvoicesInput
     payments?: PaymentCreateNestedManyWithoutInvoiceInput
     labOrders?: LabOrderCreateNestedManyWithoutInvoiceInput
@@ -66276,6 +66632,7 @@ export namespace Prisma {
     locationId: string
     cashierId: string
     registerId?: string | null
+    cashSessionId?: string | null
     requestContextId: string
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
@@ -66417,6 +66774,7 @@ export namespace Prisma {
     location?: LocationUpdateOneRequiredWithoutInvoicesNestedInput
     cashier?: UserUpdateOneRequiredWithoutInvoicesCashierNestedInput
     register?: CashRegisterUpdateOneWithoutInvoicesNestedInput
+    cashSession?: CashSessionUpdateOneWithoutInvoicesNestedInput
     requestContext?: RequestContextUpdateOneRequiredWithoutInvoicesNestedInput
     payments?: PaymentUpdateManyWithoutInvoiceNestedInput
     labOrders?: LabOrderUpdateManyWithoutInvoiceNestedInput
@@ -66432,6 +66790,7 @@ export namespace Prisma {
     locationId?: StringFieldUpdateOperationsInput | string
     cashierId?: StringFieldUpdateOperationsInput | string
     registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -66713,6 +67072,7 @@ export namespace Prisma {
     location: LocationCreateNestedOneWithoutInvoicesInput
     cashier: UserCreateNestedOneWithoutInvoicesCashierInput
     register?: CashRegisterCreateNestedOneWithoutInvoicesInput
+    cashSession?: CashSessionCreateNestedOneWithoutInvoicesInput
     requestContext: RequestContextCreateNestedOneWithoutInvoicesInput
     lines?: InvoiceLineCreateNestedManyWithoutInvoiceInput
     labOrders?: LabOrderCreateNestedManyWithoutInvoiceInput
@@ -66728,6 +67088,7 @@ export namespace Prisma {
     locationId: string
     cashierId: string
     registerId?: string | null
+    cashSessionId?: string | null
     requestContextId: string
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
@@ -66890,6 +67251,7 @@ export namespace Prisma {
     location?: LocationUpdateOneRequiredWithoutInvoicesNestedInput
     cashier?: UserUpdateOneRequiredWithoutInvoicesCashierNestedInput
     register?: CashRegisterUpdateOneWithoutInvoicesNestedInput
+    cashSession?: CashSessionUpdateOneWithoutInvoicesNestedInput
     requestContext?: RequestContextUpdateOneRequiredWithoutInvoicesNestedInput
     lines?: InvoiceLineUpdateManyWithoutInvoiceNestedInput
     labOrders?: LabOrderUpdateManyWithoutInvoiceNestedInput
@@ -66905,6 +67267,7 @@ export namespace Prisma {
     locationId?: StringFieldUpdateOperationsInput | string
     cashierId?: StringFieldUpdateOperationsInput | string
     registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -67189,6 +67552,7 @@ export namespace Prisma {
     type: $Enums.CashMovementType
     amount: Decimal | DecimalJsLike | number | string
     reference?: string | null
+    expenseType?: $Enums.ExpenseType | null
     createdAt?: Date | string
     createdBy: UserCreateNestedOneWithoutCashMovementsInput
     requestContext: RequestContextCreateNestedOneWithoutCashMovesInput
@@ -67199,6 +67563,7 @@ export namespace Prisma {
     type: $Enums.CashMovementType
     amount: Decimal | DecimalJsLike | number | string
     reference?: string | null
+    expenseType?: $Enums.ExpenseType | null
     createdById: string
     requestContextId: string
     createdAt?: Date | string
@@ -67211,6 +67576,56 @@ export namespace Prisma {
 
   export type CashMovementCreateManySessionInputEnvelope = {
     data: CashMovementCreateManySessionInput | CashMovementCreateManySessionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvoiceCreateWithoutCashSessionInput = {
+    id?: string
+    invoiceNo: string
+    status: $Enums.InvoiceStatus
+    invoiceAt: Date | string
+    subtotal: Decimal | DecimalJsLike | number | string
+    discountTotal: Decimal | DecimalJsLike | number | string
+    taxTotal: Decimal | DecimalJsLike | number | string
+    total: Decimal | DecimalJsLike | number | string
+    patient?: PatientCreateNestedOneWithoutInvoicesInput
+    preclinic?: PreclinicCreateNestedOneWithoutInvoicesInput
+    location: LocationCreateNestedOneWithoutInvoicesInput
+    cashier: UserCreateNestedOneWithoutInvoicesCashierInput
+    register?: CashRegisterCreateNestedOneWithoutInvoicesInput
+    requestContext: RequestContextCreateNestedOneWithoutInvoicesInput
+    lines?: InvoiceLineCreateNestedManyWithoutInvoiceInput
+    payments?: PaymentCreateNestedManyWithoutInvoiceInput
+    labOrders?: LabOrderCreateNestedManyWithoutInvoiceInput
+  }
+
+  export type InvoiceUncheckedCreateWithoutCashSessionInput = {
+    id?: string
+    invoiceNo: string
+    patientId?: string | null
+    preclinicId?: string | null
+    status: $Enums.InvoiceStatus
+    invoiceAt: Date | string
+    locationId: string
+    cashierId: string
+    registerId?: string | null
+    requestContextId: string
+    subtotal: Decimal | DecimalJsLike | number | string
+    discountTotal: Decimal | DecimalJsLike | number | string
+    taxTotal: Decimal | DecimalJsLike | number | string
+    total: Decimal | DecimalJsLike | number | string
+    lines?: InvoiceLineUncheckedCreateNestedManyWithoutInvoiceInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutInvoiceInput
+    labOrders?: LabOrderUncheckedCreateNestedManyWithoutInvoiceInput
+  }
+
+  export type InvoiceCreateOrConnectWithoutCashSessionInput = {
+    where: InvoiceWhereUniqueInput
+    create: XOR<InvoiceCreateWithoutCashSessionInput, InvoiceUncheckedCreateWithoutCashSessionInput>
+  }
+
+  export type InvoiceCreateManyCashSessionInputEnvelope = {
+    data: InvoiceCreateManyCashSessionInput | InvoiceCreateManyCashSessionInput[]
     skipDuplicates?: boolean
   }
 
@@ -67377,6 +67792,22 @@ export namespace Prisma {
     data: XOR<CashMovementUpdateManyMutationInput, CashMovementUncheckedUpdateManyWithoutSessionInput>
   }
 
+  export type InvoiceUpsertWithWhereUniqueWithoutCashSessionInput = {
+    where: InvoiceWhereUniqueInput
+    update: XOR<InvoiceUpdateWithoutCashSessionInput, InvoiceUncheckedUpdateWithoutCashSessionInput>
+    create: XOR<InvoiceCreateWithoutCashSessionInput, InvoiceUncheckedCreateWithoutCashSessionInput>
+  }
+
+  export type InvoiceUpdateWithWhereUniqueWithoutCashSessionInput = {
+    where: InvoiceWhereUniqueInput
+    data: XOR<InvoiceUpdateWithoutCashSessionInput, InvoiceUncheckedUpdateWithoutCashSessionInput>
+  }
+
+  export type InvoiceUpdateManyWithWhereWithoutCashSessionInput = {
+    where: InvoiceScalarWhereInput
+    data: XOR<InvoiceUpdateManyMutationInput, InvoiceUncheckedUpdateManyWithoutCashSessionInput>
+  }
+
   export type CashSessionCreateWithoutMovementsInput = {
     id?: string
     openedAt?: Date | string
@@ -67388,6 +67819,7 @@ export namespace Prisma {
     register: CashRegisterCreateNestedOneWithoutSessionsInput
     openedBy: UserCreateNestedOneWithoutCashSessionsOpenInput
     closedBy?: UserCreateNestedOneWithoutCashSessionsCloseInput
+    invoices?: InvoiceCreateNestedManyWithoutCashSessionInput
   }
 
   export type CashSessionUncheckedCreateWithoutMovementsInput = {
@@ -67401,6 +67833,7 @@ export namespace Prisma {
     declaredTotal?: Decimal | DecimalJsLike | number | string | null
     systemTotal?: Decimal | DecimalJsLike | number | string | null
     variance?: Decimal | DecimalJsLike | number | string | null
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutCashSessionInput
   }
 
   export type CashSessionCreateOrConnectWithoutMovementsInput = {
@@ -67532,6 +67965,7 @@ export namespace Prisma {
     register?: CashRegisterUpdateOneRequiredWithoutSessionsNestedInput
     openedBy?: UserUpdateOneRequiredWithoutCashSessionsOpenNestedInput
     closedBy?: UserUpdateOneWithoutCashSessionsCloseNestedInput
+    invoices?: InvoiceUpdateManyWithoutCashSessionNestedInput
   }
 
   export type CashSessionUncheckedUpdateWithoutMovementsInput = {
@@ -67545,6 +67979,7 @@ export namespace Prisma {
     declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    invoices?: InvoiceUncheckedUpdateManyWithoutCashSessionNestedInput
   }
 
   export type UserUpsertWithoutCashMovementsInput = {
@@ -68981,6 +69416,7 @@ export namespace Prisma {
     location: LocationCreateNestedOneWithoutInvoicesInput
     cashier: UserCreateNestedOneWithoutInvoicesCashierInput
     register?: CashRegisterCreateNestedOneWithoutInvoicesInput
+    cashSession?: CashSessionCreateNestedOneWithoutInvoicesInput
     requestContext: RequestContextCreateNestedOneWithoutInvoicesInput
     lines?: InvoiceLineCreateNestedManyWithoutInvoiceInput
     payments?: PaymentCreateNestedManyWithoutInvoiceInput
@@ -68996,6 +69432,7 @@ export namespace Prisma {
     locationId: string
     cashierId: string
     registerId?: string | null
+    cashSessionId?: string | null
     requestContextId: string
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
@@ -69407,6 +69844,7 @@ export namespace Prisma {
     location?: LocationUpdateOneRequiredWithoutInvoicesNestedInput
     cashier?: UserUpdateOneRequiredWithoutInvoicesCashierNestedInput
     register?: CashRegisterUpdateOneWithoutInvoicesNestedInput
+    cashSession?: CashSessionUpdateOneWithoutInvoicesNestedInput
     requestContext?: RequestContextUpdateOneRequiredWithoutInvoicesNestedInput
     lines?: InvoiceLineUpdateManyWithoutInvoiceNestedInput
     payments?: PaymentUpdateManyWithoutInvoiceNestedInput
@@ -69422,6 +69860,7 @@ export namespace Prisma {
     locationId?: StringFieldUpdateOperationsInput | string
     cashierId?: StringFieldUpdateOperationsInput | string
     registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -70466,6 +70905,7 @@ export namespace Prisma {
     invoiceAt: Date | string
     locationId: string
     registerId?: string | null
+    cashSessionId?: string | null
     requestContextId: string
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
@@ -70517,6 +70957,7 @@ export namespace Prisma {
     type: $Enums.CashMovementType
     amount: Decimal | DecimalJsLike | number | string
     reference?: string | null
+    expenseType?: $Enums.ExpenseType | null
     requestContextId: string
     createdAt?: Date | string
   }
@@ -70868,6 +71309,7 @@ export namespace Prisma {
     preclinic?: PreclinicUpdateOneWithoutInvoicesNestedInput
     location?: LocationUpdateOneRequiredWithoutInvoicesNestedInput
     register?: CashRegisterUpdateOneWithoutInvoicesNestedInput
+    cashSession?: CashSessionUpdateOneWithoutInvoicesNestedInput
     requestContext?: RequestContextUpdateOneRequiredWithoutInvoicesNestedInput
     lines?: InvoiceLineUpdateManyWithoutInvoiceNestedInput
     payments?: PaymentUpdateManyWithoutInvoiceNestedInput
@@ -70883,6 +71325,7 @@ export namespace Prisma {
     invoiceAt?: DateTimeFieldUpdateOperationsInput | Date | string
     locationId?: StringFieldUpdateOperationsInput | string
     registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -70902,6 +71345,7 @@ export namespace Prisma {
     invoiceAt?: DateTimeFieldUpdateOperationsInput | Date | string
     locationId?: StringFieldUpdateOperationsInput | string
     registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -70962,6 +71406,7 @@ export namespace Prisma {
     register?: CashRegisterUpdateOneRequiredWithoutSessionsNestedInput
     closedBy?: UserUpdateOneWithoutCashSessionsCloseNestedInput
     movements?: CashMovementUpdateManyWithoutSessionNestedInput
+    invoices?: InvoiceUpdateManyWithoutCashSessionNestedInput
   }
 
   export type CashSessionUncheckedUpdateWithoutOpenedByInput = {
@@ -70975,6 +71420,7 @@ export namespace Prisma {
     systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     movements?: CashMovementUncheckedUpdateManyWithoutSessionNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutCashSessionNestedInput
   }
 
   export type CashSessionUncheckedUpdateManyWithoutOpenedByInput = {
@@ -71000,6 +71446,7 @@ export namespace Prisma {
     register?: CashRegisterUpdateOneRequiredWithoutSessionsNestedInput
     openedBy?: UserUpdateOneRequiredWithoutCashSessionsOpenNestedInput
     movements?: CashMovementUpdateManyWithoutSessionNestedInput
+    invoices?: InvoiceUpdateManyWithoutCashSessionNestedInput
   }
 
   export type CashSessionUncheckedUpdateWithoutClosedByInput = {
@@ -71013,6 +71460,7 @@ export namespace Prisma {
     systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     movements?: CashMovementUncheckedUpdateManyWithoutSessionNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutCashSessionNestedInput
   }
 
   export type CashSessionUncheckedUpdateManyWithoutClosedByInput = {
@@ -71032,6 +71480,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
+    expenseType?: NullableEnumExpenseTypeFieldUpdateOperationsInput | $Enums.ExpenseType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     session?: CashSessionUpdateOneRequiredWithoutMovementsNestedInput
     requestContext?: RequestContextUpdateOneRequiredWithoutCashMovesNestedInput
@@ -71043,6 +71492,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
+    expenseType?: NullableEnumExpenseTypeFieldUpdateOperationsInput | $Enums.ExpenseType | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -71053,6 +71503,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
+    expenseType?: NullableEnumExpenseTypeFieldUpdateOperationsInput | $Enums.ExpenseType | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -71240,6 +71691,7 @@ export namespace Prisma {
     invoiceAt: Date | string
     cashierId: string
     registerId?: string | null
+    cashSessionId?: string | null
     requestContextId: string
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
@@ -71414,6 +71866,7 @@ export namespace Prisma {
     preclinic?: PreclinicUpdateOneWithoutInvoicesNestedInput
     cashier?: UserUpdateOneRequiredWithoutInvoicesCashierNestedInput
     register?: CashRegisterUpdateOneWithoutInvoicesNestedInput
+    cashSession?: CashSessionUpdateOneWithoutInvoicesNestedInput
     requestContext?: RequestContextUpdateOneRequiredWithoutInvoicesNestedInput
     lines?: InvoiceLineUpdateManyWithoutInvoiceNestedInput
     payments?: PaymentUpdateManyWithoutInvoiceNestedInput
@@ -71429,6 +71882,7 @@ export namespace Prisma {
     invoiceAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cashierId?: StringFieldUpdateOperationsInput | string
     registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -71448,6 +71902,7 @@ export namespace Prisma {
     invoiceAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cashierId?: StringFieldUpdateOperationsInput | string
     registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -71476,6 +71931,7 @@ export namespace Prisma {
     invoiceAt: Date | string
     locationId: string
     cashierId: string
+    cashSessionId?: string | null
     requestContextId: string
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
@@ -71494,6 +71950,7 @@ export namespace Prisma {
     openedBy?: UserUpdateOneRequiredWithoutCashSessionsOpenNestedInput
     closedBy?: UserUpdateOneWithoutCashSessionsCloseNestedInput
     movements?: CashMovementUpdateManyWithoutSessionNestedInput
+    invoices?: InvoiceUpdateManyWithoutCashSessionNestedInput
   }
 
   export type CashSessionUncheckedUpdateWithoutRegisterInput = {
@@ -71507,6 +71964,7 @@ export namespace Prisma {
     systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     movements?: CashMovementUncheckedUpdateManyWithoutSessionNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutCashSessionNestedInput
   }
 
   export type CashSessionUncheckedUpdateManyWithoutRegisterInput = {
@@ -71534,6 +71992,7 @@ export namespace Prisma {
     preclinic?: PreclinicUpdateOneWithoutInvoicesNestedInput
     location?: LocationUpdateOneRequiredWithoutInvoicesNestedInput
     cashier?: UserUpdateOneRequiredWithoutInvoicesCashierNestedInput
+    cashSession?: CashSessionUpdateOneWithoutInvoicesNestedInput
     requestContext?: RequestContextUpdateOneRequiredWithoutInvoicesNestedInput
     lines?: InvoiceLineUpdateManyWithoutInvoiceNestedInput
     payments?: PaymentUpdateManyWithoutInvoiceNestedInput
@@ -71549,6 +72008,7 @@ export namespace Prisma {
     invoiceAt?: DateTimeFieldUpdateOperationsInput | Date | string
     locationId?: StringFieldUpdateOperationsInput | string
     cashierId?: StringFieldUpdateOperationsInput | string
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -71568,6 +72028,7 @@ export namespace Prisma {
     invoiceAt?: DateTimeFieldUpdateOperationsInput | Date | string
     locationId?: StringFieldUpdateOperationsInput | string
     cashierId?: StringFieldUpdateOperationsInput | string
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -71826,6 +72287,7 @@ export namespace Prisma {
     locationId: string
     cashierId: string
     registerId?: string | null
+    cashSessionId?: string | null
     requestContextId: string
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
@@ -72015,6 +72477,7 @@ export namespace Prisma {
     location?: LocationUpdateOneRequiredWithoutInvoicesNestedInput
     cashier?: UserUpdateOneRequiredWithoutInvoicesCashierNestedInput
     register?: CashRegisterUpdateOneWithoutInvoicesNestedInput
+    cashSession?: CashSessionUpdateOneWithoutInvoicesNestedInput
     requestContext?: RequestContextUpdateOneRequiredWithoutInvoicesNestedInput
     lines?: InvoiceLineUpdateManyWithoutInvoiceNestedInput
     payments?: PaymentUpdateManyWithoutInvoiceNestedInput
@@ -72030,6 +72493,7 @@ export namespace Prisma {
     locationId?: StringFieldUpdateOperationsInput | string
     cashierId?: StringFieldUpdateOperationsInput | string
     registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -72049,6 +72513,7 @@ export namespace Prisma {
     locationId?: StringFieldUpdateOperationsInput | string
     cashierId?: StringFieldUpdateOperationsInput | string
     registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -72185,6 +72650,7 @@ export namespace Prisma {
     locationId: string
     cashierId: string
     registerId?: string | null
+    cashSessionId?: string | null
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
     taxTotal: Decimal | DecimalJsLike | number | string
@@ -72211,6 +72677,7 @@ export namespace Prisma {
     type: $Enums.CashMovementType
     amount: Decimal | DecimalJsLike | number | string
     reference?: string | null
+    expenseType?: $Enums.ExpenseType | null
     createdById: string
     createdAt?: Date | string
   }
@@ -72293,6 +72760,7 @@ export namespace Prisma {
     location?: LocationUpdateOneRequiredWithoutInvoicesNestedInput
     cashier?: UserUpdateOneRequiredWithoutInvoicesCashierNestedInput
     register?: CashRegisterUpdateOneWithoutInvoicesNestedInput
+    cashSession?: CashSessionUpdateOneWithoutInvoicesNestedInput
     lines?: InvoiceLineUpdateManyWithoutInvoiceNestedInput
     payments?: PaymentUpdateManyWithoutInvoiceNestedInput
     labOrders?: LabOrderUpdateManyWithoutInvoiceNestedInput
@@ -72308,6 +72776,7 @@ export namespace Prisma {
     locationId?: StringFieldUpdateOperationsInput | string
     cashierId?: StringFieldUpdateOperationsInput | string
     registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     taxTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -72327,6 +72796,7 @@ export namespace Prisma {
     locationId?: StringFieldUpdateOperationsInput | string
     cashierId?: StringFieldUpdateOperationsInput | string
     registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     taxTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -72380,6 +72850,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
+    expenseType?: NullableEnumExpenseTypeFieldUpdateOperationsInput | $Enums.ExpenseType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     session?: CashSessionUpdateOneRequiredWithoutMovementsNestedInput
     createdBy?: UserUpdateOneRequiredWithoutCashMovementsNestedInput
@@ -72391,6 +72862,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
+    expenseType?: NullableEnumExpenseTypeFieldUpdateOperationsInput | $Enums.ExpenseType | null
     createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -72401,6 +72873,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
+    expenseType?: NullableEnumExpenseTypeFieldUpdateOperationsInput | $Enums.ExpenseType | null
     createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -72629,6 +73102,7 @@ export namespace Prisma {
     locationId: string
     cashierId: string
     registerId?: string | null
+    cashSessionId?: string | null
     requestContextId: string
     subtotal: Decimal | DecimalJsLike | number | string
     discountTotal: Decimal | DecimalJsLike | number | string
@@ -72698,6 +73172,7 @@ export namespace Prisma {
     location?: LocationUpdateOneRequiredWithoutInvoicesNestedInput
     cashier?: UserUpdateOneRequiredWithoutInvoicesCashierNestedInput
     register?: CashRegisterUpdateOneWithoutInvoicesNestedInput
+    cashSession?: CashSessionUpdateOneWithoutInvoicesNestedInput
     requestContext?: RequestContextUpdateOneRequiredWithoutInvoicesNestedInput
     lines?: InvoiceLineUpdateManyWithoutInvoiceNestedInput
     payments?: PaymentUpdateManyWithoutInvoiceNestedInput
@@ -72713,6 +73188,7 @@ export namespace Prisma {
     locationId?: StringFieldUpdateOperationsInput | string
     cashierId?: StringFieldUpdateOperationsInput | string
     registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -72732,6 +73208,7 @@ export namespace Prisma {
     locationId?: StringFieldUpdateOperationsInput | string
     cashierId?: StringFieldUpdateOperationsInput | string
     registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    cashSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     requestContextId?: StringFieldUpdateOperationsInput | string
     subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -73128,9 +73605,27 @@ export namespace Prisma {
     type: $Enums.CashMovementType
     amount: Decimal | DecimalJsLike | number | string
     reference?: string | null
+    expenseType?: $Enums.ExpenseType | null
     createdById: string
     requestContextId: string
     createdAt?: Date | string
+  }
+
+  export type InvoiceCreateManyCashSessionInput = {
+    id?: string
+    invoiceNo: string
+    patientId?: string | null
+    preclinicId?: string | null
+    status: $Enums.InvoiceStatus
+    invoiceAt: Date | string
+    locationId: string
+    cashierId: string
+    registerId?: string | null
+    requestContextId: string
+    subtotal: Decimal | DecimalJsLike | number | string
+    discountTotal: Decimal | DecimalJsLike | number | string
+    taxTotal: Decimal | DecimalJsLike | number | string
+    total: Decimal | DecimalJsLike | number | string
   }
 
   export type CashMovementUpdateWithoutSessionInput = {
@@ -73138,6 +73633,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
+    expenseType?: NullableEnumExpenseTypeFieldUpdateOperationsInput | $Enums.ExpenseType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: UserUpdateOneRequiredWithoutCashMovementsNestedInput
     requestContext?: RequestContextUpdateOneRequiredWithoutCashMovesNestedInput
@@ -73148,6 +73644,7 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
+    expenseType?: NullableEnumExpenseTypeFieldUpdateOperationsInput | $Enums.ExpenseType | null
     createdById?: StringFieldUpdateOperationsInput | string
     requestContextId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -73158,9 +73655,67 @@ export namespace Prisma {
     type?: EnumCashMovementTypeFieldUpdateOperationsInput | $Enums.CashMovementType
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reference?: NullableStringFieldUpdateOperationsInput | string | null
+    expenseType?: NullableEnumExpenseTypeFieldUpdateOperationsInput | $Enums.ExpenseType | null
     createdById?: StringFieldUpdateOperationsInput | string
     requestContextId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvoiceUpdateWithoutCashSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNo?: StringFieldUpdateOperationsInput | string
+    status?: EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
+    invoiceAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    taxTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    patient?: PatientUpdateOneWithoutInvoicesNestedInput
+    preclinic?: PreclinicUpdateOneWithoutInvoicesNestedInput
+    location?: LocationUpdateOneRequiredWithoutInvoicesNestedInput
+    cashier?: UserUpdateOneRequiredWithoutInvoicesCashierNestedInput
+    register?: CashRegisterUpdateOneWithoutInvoicesNestedInput
+    requestContext?: RequestContextUpdateOneRequiredWithoutInvoicesNestedInput
+    lines?: InvoiceLineUpdateManyWithoutInvoiceNestedInput
+    payments?: PaymentUpdateManyWithoutInvoiceNestedInput
+    labOrders?: LabOrderUpdateManyWithoutInvoiceNestedInput
+  }
+
+  export type InvoiceUncheckedUpdateWithoutCashSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNo?: StringFieldUpdateOperationsInput | string
+    patientId?: NullableStringFieldUpdateOperationsInput | string | null
+    preclinicId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
+    invoiceAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationId?: StringFieldUpdateOperationsInput | string
+    cashierId?: StringFieldUpdateOperationsInput | string
+    registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    requestContextId?: StringFieldUpdateOperationsInput | string
+    subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    taxTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    lines?: InvoiceLineUncheckedUpdateManyWithoutInvoiceNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutInvoiceNestedInput
+    labOrders?: LabOrderUncheckedUpdateManyWithoutInvoiceNestedInput
+  }
+
+  export type InvoiceUncheckedUpdateManyWithoutCashSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    invoiceNo?: StringFieldUpdateOperationsInput | string
+    patientId?: NullableStringFieldUpdateOperationsInput | string | null
+    preclinicId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
+    invoiceAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationId?: StringFieldUpdateOperationsInput | string
+    cashierId?: StringFieldUpdateOperationsInput | string
+    registerId?: NullableStringFieldUpdateOperationsInput | string | null
+    requestContextId?: StringFieldUpdateOperationsInput | string
+    subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discountTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    taxTotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type ProductStockCreateManyProductInput = {

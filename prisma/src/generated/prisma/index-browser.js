@@ -320,6 +320,7 @@ exports.Prisma.InvoiceScalarFieldEnum = {
   locationId: 'locationId',
   cashierId: 'cashierId',
   registerId: 'registerId',
+  cashSessionId: 'cashSessionId',
   requestContextId: 'requestContextId',
   subtotal: 'subtotal',
   discountTotal: 'discountTotal',
@@ -387,6 +388,7 @@ exports.Prisma.CashMovementScalarFieldEnum = {
   type: 'type',
   amount: 'amount',
   reference: 'reference',
+  expenseType: 'expenseType',
   createdById: 'createdById',
   requestContextId: 'requestContextId',
   createdAt: 'createdAt'
@@ -614,6 +616,12 @@ exports.CashMovementType = exports.$Enums.CashMovementType = {
   withdrawal: 'withdrawal',
   deposit: 'deposit',
   adjustment: 'adjustment'
+};
+
+exports.ExpenseType = exports.$Enums.ExpenseType = {
+  purchase: 'purchase',
+  bank_deposit: 'bank_deposit',
+  other: 'other'
 };
 
 exports.StockReason = exports.$Enums.StockReason = {
