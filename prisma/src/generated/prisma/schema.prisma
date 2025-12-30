@@ -348,13 +348,16 @@ model RequestContext {
   geoLat            Decimal?     @db.Decimal(9, 6)
   geoLon            Decimal?     @db.Decimal(9, 6)
 
-  invoices      Invoice[]
-  payments      Payment[]
-  cashMoves     CashMovement[]
+  invoices      Invoice[]      @relation("InvoiceRC")
+  payments      Payment[]      @relation("PaymentRC")
+  cashMoves     CashMovement[] @relation("CashMovementRC")
   preclinics    Preclinic[]
   labOrders     LabOrder[]
   labOrderTests LabOrderTest[]
   activities    ActivityLog[]
+
+  cashSessionsOpened CashSession[] @relation("CashSessionOpenRC")
+  cashSessionsClosed CashSession[] @relation("CashSessionCloseRC")
 
   @@map("request_contexts")
 }
@@ -496,7 +499,7 @@ model Invoice {
   cashSession   CashSession? @relation(fields: [cashSessionId], references: [id])
 
   requestContextId String         @db.Uuid
-  requestContext   RequestContext @relation(fields: [requestContextId], references: [id])
+  requestContext   RequestContext @relation("InvoiceRC", fields: [requestContextId], references: [id])
   subtotal         Decimal        @db.Decimal(12, 2)
   discountTotal    Decimal        @db.Decimal(12, 2)
   taxTotal         Decimal        @db.Decimal(12, 2)
@@ -564,7 +567,7 @@ model Payment {
   createdById      String          @db.Uuid
   createdBy        User            @relation("PaymentCreatedBy", fields: [createdById], references: [id])
   requestContextId String          @db.Uuid
-  requestContext   RequestContext  @relation(fields: [requestContextId], references: [id])
+  requestContext   RequestContext  @relation("PaymentRC", fields: [requestContextId], references: [id])
   createdAt        DateTime        @default(now())
 
   @@index([invoiceId])
@@ -587,7 +590,13 @@ model CashSession {
   variance      Decimal?     @db.Decimal(12, 2)
 
   movements CashMovement[]
-  invoices  Invoice[] // 🔥 new: all invoices tied to this session
+  invoices  Invoice[]
+
+  requestContextId String         @db.Uuid
+  requestContext   RequestContext @relation("CashSessionOpenRC", fields: [requestContextId], references: [id])
+
+  closedRequestContextId String?         @db.Uuid
+  closedRequestContext   RequestContext? @relation("CashSessionCloseRC", fields: [closedRequestContextId], references: [id])
 
   @@map("cash_sessions")
 }
@@ -605,7 +614,7 @@ model CashMovement {
   createdById      String         @db.Uuid
   createdBy        User           @relation("CashMovementCreatedBy", fields: [createdById], references: [id])
   requestContextId String         @db.Uuid
-  requestContext   RequestContext @relation(fields: [requestContextId], references: [id])
+  requestContext   RequestContext @relation("CashMovementRC", fields: [requestContextId], references: [id])
   createdAt        DateTime       @default(now())
 
   @@map("cash_movements")

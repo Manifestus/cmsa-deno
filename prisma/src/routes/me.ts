@@ -1,6 +1,6 @@
 import type { RouterContext } from "https://deno.land/x/oak@v12.6.1/mod.ts";
 import type { AuthedState } from "../middleware/auth.ts";
-import { PrismaClient } from "../generated/prisma/client.ts";
+import { PrismaClient } from "../generated/prisma/index.js";
 
 const prisma = new PrismaClient();
 

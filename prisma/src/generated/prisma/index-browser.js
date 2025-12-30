@@ -379,7 +379,9 @@ exports.Prisma.CashSessionScalarFieldEnum = {
   closedAt: 'closedAt',
   declaredTotal: 'declaredTotal',
   systemTotal: 'systemTotal',
-  variance: 'variance'
+  variance: 'variance',
+  requestContextId: 'requestContextId',
+  closedRequestContextId: 'closedRequestContextId'
 };
 
 exports.Prisma.CashMovementScalarFieldEnum = {

@@ -1,6 +1,6 @@
 // prisma/src/routes/invoices.ts
 import { Router } from "@oak/oak";
-import { PrismaClient } from "../generated/prisma/client.ts";
+import { PrismaClient } from "../generated/prisma/index.js";
 import type { AuthState } from "../types.ts";
 import { requireRoles } from "../mw/roleGuard.ts";
 
@@ -224,8 +224,9 @@ invoicesRouter.post(
     },
 );
 
+// ✅ renamed to avoid duplicate route collision
 invoicesRouter.get(
-    "/api/invoices",
+    "/api/invoices_legacy",
     requireRoles(["cashier", "admin", "super_admin"]),
     async (ctx) => {
         const qp = ctx.request.url.searchParams;
@@ -258,10 +259,11 @@ invoicesRouter.get(
     },
 );
 
-// --- Create payment for invoice -------------------------------------------
+// --- Create payment for invoice (LEGACY) ----------------------------------
 // POST /api/invoices/:id/payments { method, amount, currency, reference?, posTerminalId? }
+// ✅ renamed to avoid duplicate route collision
 invoicesRouter.post(
-    "/api/invoices/:id/payments",
+    "/api/invoices/:id/payments_legacy",
     requireRoles(["cashier", "admin", "super_admin"]),
     async (ctx) => {
         const auth = ctx.state.auth;
@@ -410,12 +412,18 @@ invoicesRouter.post(
         }
 
         // If cash, require an OPEN cash session and couple a movement
-        let session: { id: string } | null = null;
+        let session: { id: string; registerId: string | null; closedAt: Date | null } | null = null;
         if (method === "cash") {
             if (!sessionId) return badRequest(ctx, "sessionId is required for cash payments");
-            session = await prisma.cashSession.findUnique({ where: { id: sessionId } });
+
+            // ✅ updated: select registerId so we can link invoice.registerId too
+            session = await prisma.cashSession.findUnique({
+                where: { id: sessionId },
+                select: { id: true, registerId: true, closedAt: true },
+            });
+
             if (!session) return badRequest(ctx, "cash session not found", { sessionId });
-            if ((session as any).closedAt) return badRequest(ctx, "cash session is closed");
+            if (session.closedAt) return badRequest(ctx, "cash session is closed");
         }
 
         // Request context
@@ -450,6 +458,15 @@ invoicesRouter.post(
                         reference: `PAY:${payment.id}`, // soft-link for reconciliation
                         createdById: auth.user.id,
                         requestContextId: rc.id,
+                    },
+                });
+
+                // ✅ NEW: link invoice to cash session + register for reconciliation
+                await tx.invoice.update({
+                    where: { id: invoiceId },
+                    data: {
+                        cashSessionId: session!.id,
+                        registerId: session!.registerId ?? null,
                     },
                 });
             }

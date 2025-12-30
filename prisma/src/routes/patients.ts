@@ -1,6 +1,6 @@
 // prisma/src/routes/patients.ts
 import { Router } from "@oak/oak";
-import { PrismaClient } from "../generated/prisma/client.ts";
+import { PrismaClient } from "../generated/prisma/index.js";
 import type { AuthState } from "../types.ts";
 import { requireRoles } from "../mw/roleGuard.ts";
 

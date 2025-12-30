@@ -1,4 +1,4 @@
-import { PrismaClient } from "../src/generated/prisma/client.ts";
+import { PrismaClient } from "../src/generated/prisma/index.js";
 import * as jose from "jose";
 import "jsr:@std/dotenv/load";
 

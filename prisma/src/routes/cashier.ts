@@ -1,8 +1,7 @@
 import { Router } from "@oak/oak";
 import type { AuthState } from "../types.ts";
 import { requireRoles } from "../mw/roleGuard.ts";
-import { PrismaClient } from "../generated/prisma/client.ts";
-
+import { PrismaClient } from "../generated/prisma/index.js";
 
 const prisma = new PrismaClient();
 export const cashierRouter = new Router<AuthState>();
@@ -25,13 +24,16 @@ function notFound(ctx: any, message = "not_found") {
     ctx.response.body = { error: "not_found", message };
 }
 
+// ---------- request context ----------
 async function createRequestContext(prisma: PrismaClient, userId: string, ctx: any) {
     const ipAddress =
         (ctx.request.ip as string | undefined) ??
         ctx.request.headers.get("x-forwarded-for") ??
         "127.0.0.1";
+
     const userAgent = ctx.request.headers.get("user-agent") ?? "unknown";
 
+    // Create AuthSession + RequestContext in one shot
     const rc = await prisma.requestContext.create({
         data: {
             session: {
@@ -87,6 +89,7 @@ type CashMovementInput = {
     type: "sale" | "withdrawal" | "deposit" | "adjustment";
     amount: number;
     reference?: string;
+    expenseType?: "purchase" | "bank_deposit" | "other";
 };
 
 function parseCashMovement(body: unknown): CashMovementInput | { error: string; details?: unknown } {
@@ -101,16 +104,22 @@ function parseCashMovement(body: unknown): CashMovementInput | { error: string; 
     if (!["sale", "withdrawal", "deposit", "adjustment"].includes(type)) {
         return { error: "type must be one of: sale, withdrawal, deposit, adjustment" };
     }
-    if (typeof amountRaw !== "number" || !isFinite(amountRaw)) {
-        return { error: "amount must be a finite number" };
-    }
-    if (amountRaw <= 0) {
-        return { error: "amount must be > 0" };
-    }
+    if (typeof amountRaw !== "number" || !isFinite(amountRaw)) return { error: "amount must be a finite number" };
+    if (amountRaw <= 0) return { error: "amount must be > 0" };
 
     const reference = b.reference === undefined ? undefined : String(b.reference);
-    return { sessionId, type: type as CashMovementInput["type"], amount: amountRaw, reference };
+
+    const expenseTypeRaw = b.expenseType === undefined ? undefined : String(b.expenseType);
+    const expenseType =
+        expenseTypeRaw && ["purchase", "bank_deposit", "other"].includes(expenseTypeRaw)
+            ? (expenseTypeRaw as CashMovementInput["expenseType"])
+            : undefined;
+
+    return { sessionId, type: type as CashMovementInput["type"], amount: amountRaw, reference, expenseType };
 }
+
+const uuidPath =
+    "([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})";
 
 // ---------- sessions ----------
 
@@ -144,20 +153,21 @@ cashierRouter.post(
         const existingOpen = await prisma.cashSession.findFirst({
             where: { registerId: parsed.registerId, closedAt: null },
         });
-        if (existingOpen) {
-            return forbidden(ctx, "Register already has an open session");
-        }
+        if (existingOpen) return forbidden(ctx, "Register already has an open session");
 
-        const reqCtx = await createRequestContext(prisma, auth.user.id, ctx);
-
+        const openReqCtx = await createRequestContext(prisma, auth.user.id, ctx);
+        console.log("CashSession fields:", Object.keys(prisma.cashSession.fields));
+        // ✅ FIX: use checked create (connect relations) so requestContext.connect is allowed
         const created = await prisma.cashSession.create({
             data: {
-                registerId: parsed.registerId,
-                openedById: auth.user.id,
+                register: { connect: { id: parsed.registerId } },
+                openedBy: { connect: { id: auth.user.id } },
+
                 openedAt: new Date(),
                 openingFloat: parsed.openingFloat.toFixed(2),
-                requestContext: { connect: { id: reqCtx.id } }, // only if you added a FK; if not, omit
-            } as any,
+
+                requestContextId: openReqCtx.id,
+            },
         });
 
         ctx.response.status = 201;
@@ -171,7 +181,7 @@ cashierRouter.post(
  * Body: { declaredTotal }
  */
 cashierRouter.post(
-    "/api/cash/sessions/:id/close",
+    `/api/cash/sessions/:id${uuidPath}/close`,
     requireRoles(["cashier", "super_admin"]),
     async (ctx) => {
         const auth = ctx.state.auth;
@@ -195,49 +205,59 @@ cashierRouter.post(
         const moves = await prisma.cashMovement.findMany({ where: { sessionId } });
 
         const sum = (t: string) =>
-            moves
-                .filter((m: any) => m.type === (t as any))
-                .reduce((acc: any, m: any) => acc + Number(m.amount), 0);
+            moves.filter((m: any) => m.type === (t as any)).reduce((acc: number, m: any) => acc + Number(m.amount), 0);
 
         const deposits = sum("deposit");
         const sales = sum("sale");
         const withdrawals = sum("withdrawal");
         const adjustments = sum("adjustment");
 
-        const systemTotal =
-            Number(session.openingFloat) + deposits + sales - withdrawals + adjustments;
-
+        const systemTotal = Number(session.openingFloat) + deposits + sales - withdrawals + adjustments;
         const variance = Number(parsed.declaredTotal) - systemTotal;
+
+        const closeReqCtx = await createRequestContext(prisma, auth.user.id, ctx);
 
         const updated = await prisma.cashSession.update({
             where: { id: sessionId },
             data: {
-                closedById: auth.user.id,
+                // ✅ closedById is NOT accepted in your generated client; use relation connect
+                closedBy: { connect: { id: auth.user.id } },
                 closedAt: new Date(),
                 declaredTotal: parsed.declaredTotal.toFixed(2),
                 systemTotal: systemTotal.toFixed(2),
                 variance: variance.toFixed(2),
+
+                // ✅ auditing RC for close
+                closedRequestContextId: closeReqCtx.id,
             },
         });
 
         ctx.response.body = {
             ok: true,
             session: updated,
-            breakdown: { openingFloat: session.openingFloat, deposits, sales, withdrawals, adjustments },
+            breakdown: {
+                openingFloat: Number(session.openingFloat),
+                deposits,
+                sales,
+                withdrawals,
+                adjustments,
+            },
         };
     },
 );
 
 /**
- * GET /api/cash/sessions?status=open|closed&limit=20
+ * GET /api/cash/sessions?status=open|closed&limit=20&cursor=<sessionId>
  * Roles: cashier, super_admin
  */
 cashierRouter.get(
     "/api/cash/sessions",
     requireRoles(["cashier", "super_admin"]),
     async (ctx) => {
-        const status = ctx.request.url.searchParams.get("status"); // open | closed | null
-        const limit = Number(ctx.request.url.searchParams.get("limit") ?? 20);
+        const qp = ctx.request.url.searchParams;
+        const status = qp.get("status");
+        const limit = Math.min(Number(qp.get("limit") ?? 20), 100);
+        const cursor = qp.get("cursor") ?? undefined;
 
         const where =
             status === "open"
@@ -246,10 +266,11 @@ cashierRouter.get(
                     ? { NOT: { closedAt: null } }
                     : {};
 
-        const sessions = await prisma.cashSession.findMany({
+        const items = await prisma.cashSession.findMany({
             where,
-            take: limit,
-            orderBy: { openedAt: "desc" },
+            take: limit + 1,
+            ...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
+            orderBy: [{ openedAt: "desc" }, { id: "desc" }],
             include: {
                 register: { select: { id: true, name: true } },
                 openedBy: { select: { id: true, fullName: true, username: true } },
@@ -257,7 +278,13 @@ cashierRouter.get(
             },
         });
 
-        ctx.response.body = sessions;
+        let nextCursor: string | null = null;
+        if (items.length > limit) {
+            const last = items.pop()!;
+            nextCursor = last.id;
+        }
+
+        ctx.response.body = { items, nextCursor, limit };
     },
 );
 
@@ -267,7 +294,7 @@ cashierRouter.get(
  * Returns session with last 50 movements
  */
 cashierRouter.get(
-    "/api/cash/sessions/:id",
+    `/api/cash/sessions/:id${uuidPath}`,
     requireRoles(["cashier", "super_admin"]),
     async (ctx) => {
         const id = ctx.params.id!;
@@ -315,52 +342,38 @@ cashierRouter.post(
         }
 
         const parsed = parseCashMovement(json);
-        if ("error" in parsed) {
-            return badRequest(ctx, parsed.error, parsed.details);
-        }
+        if ("error" in parsed) return badRequest(ctx, parsed.error, parsed.details);
 
-        const { sessionId, type, amount, reference } = parsed;
+        const { sessionId, type, amount, reference, expenseType } = parsed;
 
         // validate session exists and open
-        const session = await prisma.cashSession.findUnique({
-            where: { id: sessionId },
-            include: { register: true },
-        });
-
+        const session = await prisma.cashSession.findUnique({ where: { id: sessionId } });
         if (!session) return badRequest(ctx, "Cash session not found", { sessionId });
         if (session.closedAt) return forbidden(ctx, "Cash session is closed");
 
         const reqCtx = await createRequestContext(prisma, auth.user.id, ctx);
 
-        try {
-            const created = await prisma.cashMovement.create({
-                data: {
-                    sessionId: session.id,
-                    type,                               // enum
-                    amount: amount.toFixed(2),          // Decimal expects string or Decimal
-                    reference: reference ?? null,
-                    createdById: auth.user.id,
-                    requestContextId: reqCtx.id,
-                },
-            });
+        // ✅ FIX: checked create (connect relations) so requestContext.connect is allowed
+        const created = await prisma.cashMovement.create({
+            data: {
+                session: { connect: { id: sessionId } },
+                createdBy: { connect: { id: auth.user.id } },
+                requestContext: { connect: { id: reqCtx.id } },
 
-            ctx.response.status = 201;
-            ctx.response.body = {
-                ok: true,
-                movement: created,
-                register: { id: session.registerId, name: (session as any).register?.name },
-                session: { id: session.id, openedAt: session.openedAt, closedAt: session.closedAt },
-            };
-        } catch (e) {
-            console.error("cash movement create failed:", e);
-            ctx.response.status = 500;
-            ctx.response.body = { error: "server_error", message: "Failed to create cash movement" };
-        }
+                type,
+                amount: amount.toFixed(2),
+                reference: reference ?? null,
+                expenseType: expenseType ?? null,
+            },
+        });
+
+        ctx.response.status = 201;
+        ctx.response.body = { ok: true, movement: created };
     },
 );
 
 /**
- * GET /api/cash/movements?sessionId=&type=&from=&to=&limit=
+ * GET /api/cash/movements?sessionId=&type=&from=&to=&limit=&cursor=
  * Roles: cashier, super_admin
  */
 cashierRouter.get(
@@ -368,41 +381,52 @@ cashierRouter.get(
     requireRoles(["cashier", "super_admin"]),
     async (ctx) => {
         const qp = ctx.request.url.searchParams;
+        const limit = Math.min(Number(qp.get("limit") ?? 50), 200);
+        const cursor = qp.get("cursor") ?? undefined;
+
         const sessionId = qp.get("sessionId") ?? undefined;
         const type = qp.get("type") ?? undefined; // sale|deposit|withdrawal|adjustment
         const from = qp.get("from") ? new Date(qp.get("from")!) : undefined;
         const to = qp.get("to") ? new Date(qp.get("to")!) : undefined;
-        const limit = Number(qp.get("limit") ?? 50);
 
         const where: any = {};
         if (sessionId) where.sessionId = sessionId;
         if (type) where.type = type;
-        if (from || to) where.createdAt = {
-            ...(from ? { gte: from } : {}),
-            ...(to ? { lte: to } : {}),
-        };
+        if (from || to) {
+            where.createdAt = {
+                ...(from ? { gte: from } : {}),
+                ...(to ? { lte: to } : {}),
+            };
+        }
 
         const items = await prisma.cashMovement.findMany({
             where,
-            take: limit,
-            orderBy: { createdAt: "desc" },
+            take: limit + 1,
+            ...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
+            orderBy: [{ createdAt: "desc" }, { id: "desc" }],
             include: {
                 createdBy: { select: { id: true, fullName: true, username: true } },
                 session: { select: { id: true, registerId: true, closedAt: true } },
             },
         });
 
-        ctx.response.body = items;
+        let nextCursor: string | null = null;
+        if (items.length > limit) {
+            const last = items.pop()!;
+            nextCursor = last.id;
+        }
+
+        ctx.response.body = { items, nextCursor, limit };
     },
 );
 
 /**
  * DELETE /api/cash/movements/:id
- * Roles: super_admin only (destructive)
+ * Roles: super_admin only
  * Only allowed while session is still open.
  */
 cashierRouter.delete(
-    "/api/cash/movements/:id",
+    `/api/cash/movements/:id${uuidPath}`,
     requireRoles(["super_admin"]),
     async (ctx) => {
         const id = ctx.params.id!;
@@ -418,81 +442,9 @@ cashierRouter.delete(
     },
 );
 
-// GET /api/cash/movements?limit=20&cursor=<movementId>&sessionId=...
-cashierRouter.get(
-    "/api/cash/movements",
-    requireRoles(["cashier", "super_admin"]),
-    async (ctx) => {
-        const qp = ctx.request.url.searchParams;
-        const limit = Math.min(Number(qp.get("limit") ?? 20), 100);
-        const cursor = qp.get("cursor") ?? undefined;
-        const sessionId = qp.get("sessionId") ?? undefined;
-        const type = qp.get("type") ?? undefined;
-
-        const where: any = {};
-        if (sessionId) where.sessionId = sessionId;
-        if (type) where.type = type;
-
-        const items = await prisma.cashMovement.findMany({
-            where,
-            take: limit + 1,                 // grab one extra to know if there’s a next page
-            ...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
-            orderBy: [{ createdAt: "desc" }, { id: "desc" }],
-            include: {
-                createdBy: { select: { id: true, fullName: true, username: true } },
-            },
-        });
-
-        let nextCursor: string | null = null;
-        if (items.length > limit) {
-            const last = items.pop()!;      // drop the extra item
-            nextCursor = last.id;           // use its id as the cursor
-        }
-
-        ctx.response.body = { items, nextCursor, limit };
-    }
-);
-
-// GET /api/cash/sessions?status=open|closed&limit=20&cursor=<sessionId>
-cashierRouter.get(
-    "/api/cash/sessions",
-    requireRoles(["cashier", "super_admin"]),
-    async (ctx) => {
-        const qp = ctx.request.url.searchParams;
-        const status = qp.get("status");
-        const limit = Math.min(Number(qp.get("limit") ?? 20), 100);
-        const cursor = qp.get("cursor") ?? undefined;
-
-        const where =
-            status === "open"   ? { closedAt: null } :
-                status === "closed" ? { NOT: { closedAt: null } } : {};
-
-        const items = await prisma.cashSession.findMany({
-            where,
-            take: limit + 1,
-            ...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
-            orderBy: [{ openedAt: "desc" }, { id: "desc" }],
-            include: {
-                register: { select: { id: true, name: true } },
-                openedBy: { select: { id: true, fullName: true, username: true } },
-                closedBy: { select: { id: true, fullName: true, username: true } },
-            },
-        });
-
-        let nextCursor: string | null = null;
-        if (items.length > limit) {
-            const last = items.pop()!;
-            nextCursor = last.id;
-        }
-
-        ctx.response.body = { items, nextCursor, limit };
-    }
-);
-
 /**
  * GET /api/registers?limit=200
  * Roles: cashier, super_admin
- * Returns minimal register info (plus optional location name if you want it)
  */
 cashierRouter.get(
     "/api/registers",
@@ -503,12 +455,9 @@ cashierRouter.get(
         const items = await prisma.cashRegister.findMany({
             take: limit,
             orderBy: { name: "asc" },
-            include: {
-                location: { select: { id: true, name: true } },
-            },
+            include: { location: { select: { id: true, name: true } } },
         });
 
-        // shape: [{ id, name, locationId, location: { id, name } }]
         ctx.response.body = items.map((r) => ({
             id: r.id,
             name: r.name,
@@ -521,7 +470,6 @@ cashierRouter.get(
 /**
  * GET /api/cash/summary?sessionId=...
  * Roles: cashier, super_admin
- * Totals by type + net/system total (recomputed live)
  */
 cashierRouter.get(
     "/api/cash/summary",
@@ -536,24 +484,22 @@ cashierRouter.get(
         const moves = await prisma.cashMovement.findMany({ where: { sessionId } });
 
         const sum = (t: string) =>
-            moves.filter((m: any) => m.type === (t as any)).reduce((acc: any, m: any) => acc + Number(m.amount), 0);
+            moves.filter((m: any) => m.type === (t as any)).reduce((acc: number, m: any) => acc + Number(m.amount), 0);
 
         const deposits = sum("deposit");
         const sales = sum("sale");
         const withdrawals = sum("withdrawal");
         const adjustments = sum("adjustment");
 
-        const systemTotal =
-            Number(session.openingFloat) + deposits + sales - withdrawals + adjustments;
+        const systemTotal = Number(session.openingFloat) + deposits + sales - withdrawals + adjustments;
 
         ctx.response.body = {
             session: { id: session.id, openedAt: session.openedAt, closedAt: session.closedAt },
             openingFloat: Number(session.openingFloat),
             totals: { deposits, sales, withdrawals, adjustments },
             systemTotal,
-            declaredTotal: session.declaredTotal ? Number(session.declaredTotal) : null,
-            variance:
-                session.declaredTotal != null ? Number(session.declaredTotal) - systemTotal : null,
+            declaredTotal: session.declaredTotal != null ? Number(session.declaredTotal) : null,
+            variance: session.declaredTotal != null ? Number(session.declaredTotal) - systemTotal : null,
         };
     },
 );

@@ -4733,6 +4733,8 @@ export namespace Prisma {
     labOrders: number
     labOrderTests: number
     activities: number
+    cashSessionsOpened: number
+    cashSessionsClosed: number
   }
 
   export type RequestContextCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4743,6 +4745,8 @@ export namespace Prisma {
     labOrders?: boolean | RequestContextCountOutputTypeCountLabOrdersArgs
     labOrderTests?: boolean | RequestContextCountOutputTypeCountLabOrderTestsArgs
     activities?: boolean | RequestContextCountOutputTypeCountActivitiesArgs
+    cashSessionsOpened?: boolean | RequestContextCountOutputTypeCountCashSessionsOpenedArgs
+    cashSessionsClosed?: boolean | RequestContextCountOutputTypeCountCashSessionsClosedArgs
   }
 
   // Custom InputTypes
@@ -4803,6 +4807,20 @@ export namespace Prisma {
    */
   export type RequestContextCountOutputTypeCountActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ActivityLogWhereInput
+  }
+
+  /**
+   * RequestContextCountOutputType without action
+   */
+  export type RequestContextCountOutputTypeCountCashSessionsOpenedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CashSessionWhereInput
+  }
+
+  /**
+   * RequestContextCountOutputType without action
+   */
+  export type RequestContextCountOutputTypeCountCashSessionsClosedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CashSessionWhereInput
   }
 
 
@@ -17307,6 +17325,8 @@ export namespace Prisma {
     labOrders?: boolean | RequestContext$labOrdersArgs<ExtArgs>
     labOrderTests?: boolean | RequestContext$labOrderTestsArgs<ExtArgs>
     activities?: boolean | RequestContext$activitiesArgs<ExtArgs>
+    cashSessionsOpened?: boolean | RequestContext$cashSessionsOpenedArgs<ExtArgs>
+    cashSessionsClosed?: boolean | RequestContext$cashSessionsClosedArgs<ExtArgs>
     _count?: boolean | RequestContextCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["requestContext"]>
 
@@ -17370,6 +17390,8 @@ export namespace Prisma {
     labOrders?: boolean | RequestContext$labOrdersArgs<ExtArgs>
     labOrderTests?: boolean | RequestContext$labOrderTestsArgs<ExtArgs>
     activities?: boolean | RequestContext$activitiesArgs<ExtArgs>
+    cashSessionsOpened?: boolean | RequestContext$cashSessionsOpenedArgs<ExtArgs>
+    cashSessionsClosed?: boolean | RequestContext$cashSessionsClosedArgs<ExtArgs>
     _count?: boolean | RequestContextCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type RequestContextIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -17393,6 +17415,8 @@ export namespace Prisma {
       labOrders: Prisma.$LabOrderPayload<ExtArgs>[]
       labOrderTests: Prisma.$LabOrderTestPayload<ExtArgs>[]
       activities: Prisma.$ActivityLogPayload<ExtArgs>[]
+      cashSessionsOpened: Prisma.$CashSessionPayload<ExtArgs>[]
+      cashSessionsClosed: Prisma.$CashSessionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -17810,6 +17834,8 @@ export namespace Prisma {
     labOrders<T extends RequestContext$labOrdersArgs<ExtArgs> = {}>(args?: Subset<T, RequestContext$labOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     labOrderTests<T extends RequestContext$labOrderTestsArgs<ExtArgs> = {}>(args?: Subset<T, RequestContext$labOrderTestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabOrderTestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     activities<T extends RequestContext$activitiesArgs<ExtArgs> = {}>(args?: Subset<T, RequestContext$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    cashSessionsOpened<T extends RequestContext$cashSessionsOpenedArgs<ExtArgs> = {}>(args?: Subset<T, RequestContext$cashSessionsOpenedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CashSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    cashSessionsClosed<T extends RequestContext$cashSessionsClosedArgs<ExtArgs> = {}>(args?: Subset<T, RequestContext$cashSessionsClosedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CashSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18431,6 +18457,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ActivityLogScalarFieldEnum | ActivityLogScalarFieldEnum[]
+  }
+
+  /**
+   * RequestContext.cashSessionsOpened
+   */
+  export type RequestContext$cashSessionsOpenedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashSession
+     */
+    select?: CashSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashSession
+     */
+    omit?: CashSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashSessionInclude<ExtArgs> | null
+    where?: CashSessionWhereInput
+    orderBy?: CashSessionOrderByWithRelationInput | CashSessionOrderByWithRelationInput[]
+    cursor?: CashSessionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CashSessionScalarFieldEnum | CashSessionScalarFieldEnum[]
+  }
+
+  /**
+   * RequestContext.cashSessionsClosed
+   */
+  export type RequestContext$cashSessionsClosedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CashSession
+     */
+    select?: CashSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CashSession
+     */
+    omit?: CashSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CashSessionInclude<ExtArgs> | null
+    where?: CashSessionWhereInput
+    orderBy?: CashSessionOrderByWithRelationInput | CashSessionOrderByWithRelationInput[]
+    cursor?: CashSessionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CashSessionScalarFieldEnum | CashSessionScalarFieldEnum[]
   }
 
   /**
@@ -31684,6 +31758,8 @@ export namespace Prisma {
     declaredTotal: Decimal | null
     systemTotal: Decimal | null
     variance: Decimal | null
+    requestContextId: string | null
+    closedRequestContextId: string | null
   }
 
   export type CashSessionMaxAggregateOutputType = {
@@ -31697,6 +31773,8 @@ export namespace Prisma {
     declaredTotal: Decimal | null
     systemTotal: Decimal | null
     variance: Decimal | null
+    requestContextId: string | null
+    closedRequestContextId: string | null
   }
 
   export type CashSessionCountAggregateOutputType = {
@@ -31710,6 +31788,8 @@ export namespace Prisma {
     declaredTotal: number
     systemTotal: number
     variance: number
+    requestContextId: number
+    closedRequestContextId: number
     _all: number
   }
 
@@ -31739,6 +31819,8 @@ export namespace Prisma {
     declaredTotal?: true
     systemTotal?: true
     variance?: true
+    requestContextId?: true
+    closedRequestContextId?: true
   }
 
   export type CashSessionMaxAggregateInputType = {
@@ -31752,6 +31834,8 @@ export namespace Prisma {
     declaredTotal?: true
     systemTotal?: true
     variance?: true
+    requestContextId?: true
+    closedRequestContextId?: true
   }
 
   export type CashSessionCountAggregateInputType = {
@@ -31765,6 +31849,8 @@ export namespace Prisma {
     declaredTotal?: true
     systemTotal?: true
     variance?: true
+    requestContextId?: true
+    closedRequestContextId?: true
     _all?: true
   }
 
@@ -31865,6 +31951,8 @@ export namespace Prisma {
     declaredTotal: Decimal | null
     systemTotal: Decimal | null
     variance: Decimal | null
+    requestContextId: string
+    closedRequestContextId: string | null
     _count: CashSessionCountAggregateOutputType | null
     _avg: CashSessionAvgAggregateOutputType | null
     _sum: CashSessionSumAggregateOutputType | null
@@ -31897,11 +31985,15 @@ export namespace Prisma {
     declaredTotal?: boolean
     systemTotal?: boolean
     variance?: boolean
+    requestContextId?: boolean
+    closedRequestContextId?: boolean
     register?: boolean | CashRegisterDefaultArgs<ExtArgs>
     openedBy?: boolean | UserDefaultArgs<ExtArgs>
     closedBy?: boolean | CashSession$closedByArgs<ExtArgs>
     movements?: boolean | CashSession$movementsArgs<ExtArgs>
     invoices?: boolean | CashSession$invoicesArgs<ExtArgs>
+    requestContext?: boolean | RequestContextDefaultArgs<ExtArgs>
+    closedRequestContext?: boolean | CashSession$closedRequestContextArgs<ExtArgs>
     _count?: boolean | CashSessionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cashSession"]>
 
@@ -31916,9 +32008,13 @@ export namespace Prisma {
     declaredTotal?: boolean
     systemTotal?: boolean
     variance?: boolean
+    requestContextId?: boolean
+    closedRequestContextId?: boolean
     register?: boolean | CashRegisterDefaultArgs<ExtArgs>
     openedBy?: boolean | UserDefaultArgs<ExtArgs>
     closedBy?: boolean | CashSession$closedByArgs<ExtArgs>
+    requestContext?: boolean | RequestContextDefaultArgs<ExtArgs>
+    closedRequestContext?: boolean | CashSession$closedRequestContextArgs<ExtArgs>
   }, ExtArgs["result"]["cashSession"]>
 
   export type CashSessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -31932,9 +32028,13 @@ export namespace Prisma {
     declaredTotal?: boolean
     systemTotal?: boolean
     variance?: boolean
+    requestContextId?: boolean
+    closedRequestContextId?: boolean
     register?: boolean | CashRegisterDefaultArgs<ExtArgs>
     openedBy?: boolean | UserDefaultArgs<ExtArgs>
     closedBy?: boolean | CashSession$closedByArgs<ExtArgs>
+    requestContext?: boolean | RequestContextDefaultArgs<ExtArgs>
+    closedRequestContext?: boolean | CashSession$closedRequestContextArgs<ExtArgs>
   }, ExtArgs["result"]["cashSession"]>
 
   export type CashSessionSelectScalar = {
@@ -31948,26 +32048,34 @@ export namespace Prisma {
     declaredTotal?: boolean
     systemTotal?: boolean
     variance?: boolean
+    requestContextId?: boolean
+    closedRequestContextId?: boolean
   }
 
-  export type CashSessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "registerId" | "openedById" | "openedAt" | "openingFloat" | "closedById" | "closedAt" | "declaredTotal" | "systemTotal" | "variance", ExtArgs["result"]["cashSession"]>
+  export type CashSessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "registerId" | "openedById" | "openedAt" | "openingFloat" | "closedById" | "closedAt" | "declaredTotal" | "systemTotal" | "variance" | "requestContextId" | "closedRequestContextId", ExtArgs["result"]["cashSession"]>
   export type CashSessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     register?: boolean | CashRegisterDefaultArgs<ExtArgs>
     openedBy?: boolean | UserDefaultArgs<ExtArgs>
     closedBy?: boolean | CashSession$closedByArgs<ExtArgs>
     movements?: boolean | CashSession$movementsArgs<ExtArgs>
     invoices?: boolean | CashSession$invoicesArgs<ExtArgs>
+    requestContext?: boolean | RequestContextDefaultArgs<ExtArgs>
+    closedRequestContext?: boolean | CashSession$closedRequestContextArgs<ExtArgs>
     _count?: boolean | CashSessionCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CashSessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     register?: boolean | CashRegisterDefaultArgs<ExtArgs>
     openedBy?: boolean | UserDefaultArgs<ExtArgs>
     closedBy?: boolean | CashSession$closedByArgs<ExtArgs>
+    requestContext?: boolean | RequestContextDefaultArgs<ExtArgs>
+    closedRequestContext?: boolean | CashSession$closedRequestContextArgs<ExtArgs>
   }
   export type CashSessionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     register?: boolean | CashRegisterDefaultArgs<ExtArgs>
     openedBy?: boolean | UserDefaultArgs<ExtArgs>
     closedBy?: boolean | CashSession$closedByArgs<ExtArgs>
+    requestContext?: boolean | RequestContextDefaultArgs<ExtArgs>
+    closedRequestContext?: boolean | CashSession$closedRequestContextArgs<ExtArgs>
   }
 
   export type $CashSessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -31978,6 +32086,8 @@ export namespace Prisma {
       closedBy: Prisma.$UserPayload<ExtArgs> | null
       movements: Prisma.$CashMovementPayload<ExtArgs>[]
       invoices: Prisma.$InvoicePayload<ExtArgs>[]
+      requestContext: Prisma.$RequestContextPayload<ExtArgs>
+      closedRequestContext: Prisma.$RequestContextPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -31990,6 +32100,8 @@ export namespace Prisma {
       declaredTotal: Prisma.Decimal | null
       systemTotal: Prisma.Decimal | null
       variance: Prisma.Decimal | null
+      requestContextId: string
+      closedRequestContextId: string | null
     }, ExtArgs["result"]["cashSession"]>
     composites: {}
   }
@@ -32389,6 +32501,8 @@ export namespace Prisma {
     closedBy<T extends CashSession$closedByArgs<ExtArgs> = {}>(args?: Subset<T, CashSession$closedByArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     movements<T extends CashSession$movementsArgs<ExtArgs> = {}>(args?: Subset<T, CashSession$movementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CashMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     invoices<T extends CashSession$invoicesArgs<ExtArgs> = {}>(args?: Subset<T, CashSession$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    requestContext<T extends RequestContextDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RequestContextDefaultArgs<ExtArgs>>): Prisma__RequestContextClient<$Result.GetResult<Prisma.$RequestContextPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    closedRequestContext<T extends CashSession$closedRequestContextArgs<ExtArgs> = {}>(args?: Subset<T, CashSession$closedRequestContextArgs<ExtArgs>>): Prisma__RequestContextClient<$Result.GetResult<Prisma.$RequestContextPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -32428,6 +32542,8 @@ export namespace Prisma {
     readonly declaredTotal: FieldRef<"CashSession", 'Decimal'>
     readonly systemTotal: FieldRef<"CashSession", 'Decimal'>
     readonly variance: FieldRef<"CashSession", 'Decimal'>
+    readonly requestContextId: FieldRef<"CashSession", 'String'>
+    readonly closedRequestContextId: FieldRef<"CashSession", 'String'>
   }
     
 
@@ -32888,6 +33004,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: InvoiceScalarFieldEnum | InvoiceScalarFieldEnum[]
+  }
+
+  /**
+   * CashSession.closedRequestContext
+   */
+  export type CashSession$closedRequestContextArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestContext
+     */
+    select?: RequestContextSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestContext
+     */
+    omit?: RequestContextOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RequestContextInclude<ExtArgs> | null
+    where?: RequestContextWhereInput
   }
 
   /**
@@ -47345,7 +47480,9 @@ export namespace Prisma {
     closedAt: 'closedAt',
     declaredTotal: 'declaredTotal',
     systemTotal: 'systemTotal',
-    variance: 'variance'
+    variance: 'variance',
+    requestContextId: 'requestContextId',
+    closedRequestContextId: 'closedRequestContextId'
   };
 
   export type CashSessionScalarFieldEnum = (typeof CashSessionScalarFieldEnum)[keyof typeof CashSessionScalarFieldEnum]
@@ -48703,6 +48840,8 @@ export namespace Prisma {
     labOrders?: LabOrderListRelationFilter
     labOrderTests?: LabOrderTestListRelationFilter
     activities?: ActivityLogListRelationFilter
+    cashSessionsOpened?: CashSessionListRelationFilter
+    cashSessionsClosed?: CashSessionListRelationFilter
   }
 
   export type RequestContextOrderByWithRelationInput = {
@@ -48727,6 +48866,8 @@ export namespace Prisma {
     labOrders?: LabOrderOrderByRelationAggregateInput
     labOrderTests?: LabOrderTestOrderByRelationAggregateInput
     activities?: ActivityLogOrderByRelationAggregateInput
+    cashSessionsOpened?: CashSessionOrderByRelationAggregateInput
+    cashSessionsClosed?: CashSessionOrderByRelationAggregateInput
   }
 
   export type RequestContextWhereUniqueInput = Prisma.AtLeast<{
@@ -48754,6 +48895,8 @@ export namespace Prisma {
     labOrders?: LabOrderListRelationFilter
     labOrderTests?: LabOrderTestListRelationFilter
     activities?: ActivityLogListRelationFilter
+    cashSessionsOpened?: CashSessionListRelationFilter
+    cashSessionsClosed?: CashSessionListRelationFilter
   }, "id">
 
   export type RequestContextOrderByWithAggregationInput = {
@@ -49751,11 +49894,15 @@ export namespace Prisma {
     declaredTotal?: DecimalNullableFilter<"CashSession"> | Decimal | DecimalJsLike | number | string | null
     systemTotal?: DecimalNullableFilter<"CashSession"> | Decimal | DecimalJsLike | number | string | null
     variance?: DecimalNullableFilter<"CashSession"> | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: UuidFilter<"CashSession"> | string
+    closedRequestContextId?: UuidNullableFilter<"CashSession"> | string | null
     register?: XOR<CashRegisterScalarRelationFilter, CashRegisterWhereInput>
     openedBy?: XOR<UserScalarRelationFilter, UserWhereInput>
     closedBy?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     movements?: CashMovementListRelationFilter
     invoices?: InvoiceListRelationFilter
+    requestContext?: XOR<RequestContextScalarRelationFilter, RequestContextWhereInput>
+    closedRequestContext?: XOR<RequestContextNullableScalarRelationFilter, RequestContextWhereInput> | null
   }
 
   export type CashSessionOrderByWithRelationInput = {
@@ -49769,11 +49916,15 @@ export namespace Prisma {
     declaredTotal?: SortOrderInput | SortOrder
     systemTotal?: SortOrderInput | SortOrder
     variance?: SortOrderInput | SortOrder
+    requestContextId?: SortOrder
+    closedRequestContextId?: SortOrderInput | SortOrder
     register?: CashRegisterOrderByWithRelationInput
     openedBy?: UserOrderByWithRelationInput
     closedBy?: UserOrderByWithRelationInput
     movements?: CashMovementOrderByRelationAggregateInput
     invoices?: InvoiceOrderByRelationAggregateInput
+    requestContext?: RequestContextOrderByWithRelationInput
+    closedRequestContext?: RequestContextOrderByWithRelationInput
   }
 
   export type CashSessionWhereUniqueInput = Prisma.AtLeast<{
@@ -49790,11 +49941,15 @@ export namespace Prisma {
     declaredTotal?: DecimalNullableFilter<"CashSession"> | Decimal | DecimalJsLike | number | string | null
     systemTotal?: DecimalNullableFilter<"CashSession"> | Decimal | DecimalJsLike | number | string | null
     variance?: DecimalNullableFilter<"CashSession"> | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: UuidFilter<"CashSession"> | string
+    closedRequestContextId?: UuidNullableFilter<"CashSession"> | string | null
     register?: XOR<CashRegisterScalarRelationFilter, CashRegisterWhereInput>
     openedBy?: XOR<UserScalarRelationFilter, UserWhereInput>
     closedBy?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     movements?: CashMovementListRelationFilter
     invoices?: InvoiceListRelationFilter
+    requestContext?: XOR<RequestContextScalarRelationFilter, RequestContextWhereInput>
+    closedRequestContext?: XOR<RequestContextNullableScalarRelationFilter, RequestContextWhereInput> | null
   }, "id">
 
   export type CashSessionOrderByWithAggregationInput = {
@@ -49808,6 +49963,8 @@ export namespace Prisma {
     declaredTotal?: SortOrderInput | SortOrder
     systemTotal?: SortOrderInput | SortOrder
     variance?: SortOrderInput | SortOrder
+    requestContextId?: SortOrder
+    closedRequestContextId?: SortOrderInput | SortOrder
     _count?: CashSessionCountOrderByAggregateInput
     _avg?: CashSessionAvgOrderByAggregateInput
     _max?: CashSessionMaxOrderByAggregateInput
@@ -49829,6 +49986,8 @@ export namespace Prisma {
     declaredTotal?: DecimalNullableWithAggregatesFilter<"CashSession"> | Decimal | DecimalJsLike | number | string | null
     systemTotal?: DecimalNullableWithAggregatesFilter<"CashSession"> | Decimal | DecimalJsLike | number | string | null
     variance?: DecimalNullableWithAggregatesFilter<"CashSession"> | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: UuidWithAggregatesFilter<"CashSession"> | string
+    closedRequestContextId?: UuidNullableWithAggregatesFilter<"CashSession"> | string | null
   }
 
   export type CashMovementWhereInput = {
@@ -51610,6 +51769,8 @@ export namespace Prisma {
     labOrders?: LabOrderCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextUncheckedCreateInput = {
@@ -51632,6 +51793,8 @@ export namespace Prisma {
     labOrders?: LabOrderUncheckedCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestUncheckedCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionUncheckedCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextUpdateInput = {
@@ -51654,6 +51817,8 @@ export namespace Prisma {
     labOrders?: LabOrderUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type RequestContextUncheckedUpdateInput = {
@@ -51676,6 +51841,8 @@ export namespace Prisma {
     labOrders?: LabOrderUncheckedUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUncheckedUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUncheckedUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type RequestContextCreateManyInput = {
@@ -52706,6 +52873,8 @@ export namespace Prisma {
     closedBy?: UserCreateNestedOneWithoutCashSessionsCloseInput
     movements?: CashMovementCreateNestedManyWithoutSessionInput
     invoices?: InvoiceCreateNestedManyWithoutCashSessionInput
+    requestContext: RequestContextCreateNestedOneWithoutCashSessionsOpenedInput
+    closedRequestContext?: RequestContextCreateNestedOneWithoutCashSessionsClosedInput
   }
 
   export type CashSessionUncheckedCreateInput = {
@@ -52719,6 +52888,8 @@ export namespace Prisma {
     declaredTotal?: Decimal | DecimalJsLike | number | string | null
     systemTotal?: Decimal | DecimalJsLike | number | string | null
     variance?: Decimal | DecimalJsLike | number | string | null
+    requestContextId: string
+    closedRequestContextId?: string | null
     movements?: CashMovementUncheckedCreateNestedManyWithoutSessionInput
     invoices?: InvoiceUncheckedCreateNestedManyWithoutCashSessionInput
   }
@@ -52736,6 +52907,8 @@ export namespace Prisma {
     closedBy?: UserUpdateOneWithoutCashSessionsCloseNestedInput
     movements?: CashMovementUpdateManyWithoutSessionNestedInput
     invoices?: InvoiceUpdateManyWithoutCashSessionNestedInput
+    requestContext?: RequestContextUpdateOneRequiredWithoutCashSessionsOpenedNestedInput
+    closedRequestContext?: RequestContextUpdateOneWithoutCashSessionsClosedNestedInput
   }
 
   export type CashSessionUncheckedUpdateInput = {
@@ -52749,6 +52922,8 @@ export namespace Prisma {
     declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: StringFieldUpdateOperationsInput | string
+    closedRequestContextId?: NullableStringFieldUpdateOperationsInput | string | null
     movements?: CashMovementUncheckedUpdateManyWithoutSessionNestedInput
     invoices?: InvoiceUncheckedUpdateManyWithoutCashSessionNestedInput
   }
@@ -52764,6 +52939,8 @@ export namespace Prisma {
     declaredTotal?: Decimal | DecimalJsLike | number | string | null
     systemTotal?: Decimal | DecimalJsLike | number | string | null
     variance?: Decimal | DecimalJsLike | number | string | null
+    requestContextId: string
+    closedRequestContextId?: string | null
   }
 
   export type CashSessionUpdateManyMutationInput = {
@@ -52787,6 +52964,8 @@ export namespace Prisma {
     declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: StringFieldUpdateOperationsInput | string
+    closedRequestContextId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CashMovementCreateInput = {
@@ -55454,6 +55633,11 @@ export namespace Prisma {
     isNot?: CashRegisterWhereInput
   }
 
+  export type RequestContextNullableScalarRelationFilter = {
+    is?: RequestContextWhereInput | null
+    isNot?: RequestContextWhereInput | null
+  }
+
   export type CashSessionCountOrderByAggregateInput = {
     id?: SortOrder
     registerId?: SortOrder
@@ -55465,6 +55649,8 @@ export namespace Prisma {
     declaredTotal?: SortOrder
     systemTotal?: SortOrder
     variance?: SortOrder
+    requestContextId?: SortOrder
+    closedRequestContextId?: SortOrder
   }
 
   export type CashSessionAvgOrderByAggregateInput = {
@@ -55485,6 +55671,8 @@ export namespace Prisma {
     declaredTotal?: SortOrder
     systemTotal?: SortOrder
     variance?: SortOrder
+    requestContextId?: SortOrder
+    closedRequestContextId?: SortOrder
   }
 
   export type CashSessionMinOrderByAggregateInput = {
@@ -55498,6 +55686,8 @@ export namespace Prisma {
     declaredTotal?: SortOrder
     systemTotal?: SortOrder
     variance?: SortOrder
+    requestContextId?: SortOrder
+    closedRequestContextId?: SortOrder
   }
 
   export type CashSessionSumOrderByAggregateInput = {
@@ -57963,6 +58153,20 @@ export namespace Prisma {
     connect?: ActivityLogWhereUniqueInput | ActivityLogWhereUniqueInput[]
   }
 
+  export type CashSessionCreateNestedManyWithoutRequestContextInput = {
+    create?: XOR<CashSessionCreateWithoutRequestContextInput, CashSessionUncheckedCreateWithoutRequestContextInput> | CashSessionCreateWithoutRequestContextInput[] | CashSessionUncheckedCreateWithoutRequestContextInput[]
+    connectOrCreate?: CashSessionCreateOrConnectWithoutRequestContextInput | CashSessionCreateOrConnectWithoutRequestContextInput[]
+    createMany?: CashSessionCreateManyRequestContextInputEnvelope
+    connect?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+  }
+
+  export type CashSessionCreateNestedManyWithoutClosedRequestContextInput = {
+    create?: XOR<CashSessionCreateWithoutClosedRequestContextInput, CashSessionUncheckedCreateWithoutClosedRequestContextInput> | CashSessionCreateWithoutClosedRequestContextInput[] | CashSessionUncheckedCreateWithoutClosedRequestContextInput[]
+    connectOrCreate?: CashSessionCreateOrConnectWithoutClosedRequestContextInput | CashSessionCreateOrConnectWithoutClosedRequestContextInput[]
+    createMany?: CashSessionCreateManyClosedRequestContextInputEnvelope
+    connect?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+  }
+
   export type InvoiceUncheckedCreateNestedManyWithoutRequestContextInput = {
     create?: XOR<InvoiceCreateWithoutRequestContextInput, InvoiceUncheckedCreateWithoutRequestContextInput> | InvoiceCreateWithoutRequestContextInput[] | InvoiceUncheckedCreateWithoutRequestContextInput[]
     connectOrCreate?: InvoiceCreateOrConnectWithoutRequestContextInput | InvoiceCreateOrConnectWithoutRequestContextInput[]
@@ -58010,6 +58214,20 @@ export namespace Prisma {
     connectOrCreate?: ActivityLogCreateOrConnectWithoutRequestContextInput | ActivityLogCreateOrConnectWithoutRequestContextInput[]
     createMany?: ActivityLogCreateManyRequestContextInputEnvelope
     connect?: ActivityLogWhereUniqueInput | ActivityLogWhereUniqueInput[]
+  }
+
+  export type CashSessionUncheckedCreateNestedManyWithoutRequestContextInput = {
+    create?: XOR<CashSessionCreateWithoutRequestContextInput, CashSessionUncheckedCreateWithoutRequestContextInput> | CashSessionCreateWithoutRequestContextInput[] | CashSessionUncheckedCreateWithoutRequestContextInput[]
+    connectOrCreate?: CashSessionCreateOrConnectWithoutRequestContextInput | CashSessionCreateOrConnectWithoutRequestContextInput[]
+    createMany?: CashSessionCreateManyRequestContextInputEnvelope
+    connect?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+  }
+
+  export type CashSessionUncheckedCreateNestedManyWithoutClosedRequestContextInput = {
+    create?: XOR<CashSessionCreateWithoutClosedRequestContextInput, CashSessionUncheckedCreateWithoutClosedRequestContextInput> | CashSessionCreateWithoutClosedRequestContextInput[] | CashSessionUncheckedCreateWithoutClosedRequestContextInput[]
+    connectOrCreate?: CashSessionCreateOrConnectWithoutClosedRequestContextInput | CashSessionCreateOrConnectWithoutClosedRequestContextInput[]
+    createMany?: CashSessionCreateManyClosedRequestContextInputEnvelope
+    connect?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
   }
 
   export type AuthSessionUpdateOneRequiredWithoutContextsNestedInput = {
@@ -58128,6 +58346,34 @@ export namespace Prisma {
     deleteMany?: ActivityLogScalarWhereInput | ActivityLogScalarWhereInput[]
   }
 
+  export type CashSessionUpdateManyWithoutRequestContextNestedInput = {
+    create?: XOR<CashSessionCreateWithoutRequestContextInput, CashSessionUncheckedCreateWithoutRequestContextInput> | CashSessionCreateWithoutRequestContextInput[] | CashSessionUncheckedCreateWithoutRequestContextInput[]
+    connectOrCreate?: CashSessionCreateOrConnectWithoutRequestContextInput | CashSessionCreateOrConnectWithoutRequestContextInput[]
+    upsert?: CashSessionUpsertWithWhereUniqueWithoutRequestContextInput | CashSessionUpsertWithWhereUniqueWithoutRequestContextInput[]
+    createMany?: CashSessionCreateManyRequestContextInputEnvelope
+    set?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    disconnect?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    delete?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    connect?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    update?: CashSessionUpdateWithWhereUniqueWithoutRequestContextInput | CashSessionUpdateWithWhereUniqueWithoutRequestContextInput[]
+    updateMany?: CashSessionUpdateManyWithWhereWithoutRequestContextInput | CashSessionUpdateManyWithWhereWithoutRequestContextInput[]
+    deleteMany?: CashSessionScalarWhereInput | CashSessionScalarWhereInput[]
+  }
+
+  export type CashSessionUpdateManyWithoutClosedRequestContextNestedInput = {
+    create?: XOR<CashSessionCreateWithoutClosedRequestContextInput, CashSessionUncheckedCreateWithoutClosedRequestContextInput> | CashSessionCreateWithoutClosedRequestContextInput[] | CashSessionUncheckedCreateWithoutClosedRequestContextInput[]
+    connectOrCreate?: CashSessionCreateOrConnectWithoutClosedRequestContextInput | CashSessionCreateOrConnectWithoutClosedRequestContextInput[]
+    upsert?: CashSessionUpsertWithWhereUniqueWithoutClosedRequestContextInput | CashSessionUpsertWithWhereUniqueWithoutClosedRequestContextInput[]
+    createMany?: CashSessionCreateManyClosedRequestContextInputEnvelope
+    set?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    disconnect?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    delete?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    connect?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    update?: CashSessionUpdateWithWhereUniqueWithoutClosedRequestContextInput | CashSessionUpdateWithWhereUniqueWithoutClosedRequestContextInput[]
+    updateMany?: CashSessionUpdateManyWithWhereWithoutClosedRequestContextInput | CashSessionUpdateManyWithWhereWithoutClosedRequestContextInput[]
+    deleteMany?: CashSessionScalarWhereInput | CashSessionScalarWhereInput[]
+  }
+
   export type InvoiceUncheckedUpdateManyWithoutRequestContextNestedInput = {
     create?: XOR<InvoiceCreateWithoutRequestContextInput, InvoiceUncheckedCreateWithoutRequestContextInput> | InvoiceCreateWithoutRequestContextInput[] | InvoiceUncheckedCreateWithoutRequestContextInput[]
     connectOrCreate?: InvoiceCreateOrConnectWithoutRequestContextInput | InvoiceCreateOrConnectWithoutRequestContextInput[]
@@ -58224,6 +58470,34 @@ export namespace Prisma {
     update?: ActivityLogUpdateWithWhereUniqueWithoutRequestContextInput | ActivityLogUpdateWithWhereUniqueWithoutRequestContextInput[]
     updateMany?: ActivityLogUpdateManyWithWhereWithoutRequestContextInput | ActivityLogUpdateManyWithWhereWithoutRequestContextInput[]
     deleteMany?: ActivityLogScalarWhereInput | ActivityLogScalarWhereInput[]
+  }
+
+  export type CashSessionUncheckedUpdateManyWithoutRequestContextNestedInput = {
+    create?: XOR<CashSessionCreateWithoutRequestContextInput, CashSessionUncheckedCreateWithoutRequestContextInput> | CashSessionCreateWithoutRequestContextInput[] | CashSessionUncheckedCreateWithoutRequestContextInput[]
+    connectOrCreate?: CashSessionCreateOrConnectWithoutRequestContextInput | CashSessionCreateOrConnectWithoutRequestContextInput[]
+    upsert?: CashSessionUpsertWithWhereUniqueWithoutRequestContextInput | CashSessionUpsertWithWhereUniqueWithoutRequestContextInput[]
+    createMany?: CashSessionCreateManyRequestContextInputEnvelope
+    set?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    disconnect?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    delete?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    connect?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    update?: CashSessionUpdateWithWhereUniqueWithoutRequestContextInput | CashSessionUpdateWithWhereUniqueWithoutRequestContextInput[]
+    updateMany?: CashSessionUpdateManyWithWhereWithoutRequestContextInput | CashSessionUpdateManyWithWhereWithoutRequestContextInput[]
+    deleteMany?: CashSessionScalarWhereInput | CashSessionScalarWhereInput[]
+  }
+
+  export type CashSessionUncheckedUpdateManyWithoutClosedRequestContextNestedInput = {
+    create?: XOR<CashSessionCreateWithoutClosedRequestContextInput, CashSessionUncheckedCreateWithoutClosedRequestContextInput> | CashSessionCreateWithoutClosedRequestContextInput[] | CashSessionUncheckedCreateWithoutClosedRequestContextInput[]
+    connectOrCreate?: CashSessionCreateOrConnectWithoutClosedRequestContextInput | CashSessionCreateOrConnectWithoutClosedRequestContextInput[]
+    upsert?: CashSessionUpsertWithWhereUniqueWithoutClosedRequestContextInput | CashSessionUpsertWithWhereUniqueWithoutClosedRequestContextInput[]
+    createMany?: CashSessionCreateManyClosedRequestContextInputEnvelope
+    set?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    disconnect?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    delete?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    connect?: CashSessionWhereUniqueInput | CashSessionWhereUniqueInput[]
+    update?: CashSessionUpdateWithWhereUniqueWithoutClosedRequestContextInput | CashSessionUpdateWithWhereUniqueWithoutClosedRequestContextInput[]
+    updateMany?: CashSessionUpdateManyWithWhereWithoutClosedRequestContextInput | CashSessionUpdateManyWithWhereWithoutClosedRequestContextInput[]
+    deleteMany?: CashSessionScalarWhereInput | CashSessionScalarWhereInput[]
   }
 
   export type PatientCreateNestedOneWithoutPreclinicsInput = {
@@ -59124,6 +59398,18 @@ export namespace Prisma {
     connect?: InvoiceWhereUniqueInput | InvoiceWhereUniqueInput[]
   }
 
+  export type RequestContextCreateNestedOneWithoutCashSessionsOpenedInput = {
+    create?: XOR<RequestContextCreateWithoutCashSessionsOpenedInput, RequestContextUncheckedCreateWithoutCashSessionsOpenedInput>
+    connectOrCreate?: RequestContextCreateOrConnectWithoutCashSessionsOpenedInput
+    connect?: RequestContextWhereUniqueInput
+  }
+
+  export type RequestContextCreateNestedOneWithoutCashSessionsClosedInput = {
+    create?: XOR<RequestContextCreateWithoutCashSessionsClosedInput, RequestContextUncheckedCreateWithoutCashSessionsClosedInput>
+    connectOrCreate?: RequestContextCreateOrConnectWithoutCashSessionsClosedInput
+    connect?: RequestContextWhereUniqueInput
+  }
+
   export type CashMovementUncheckedCreateNestedManyWithoutSessionInput = {
     create?: XOR<CashMovementCreateWithoutSessionInput, CashMovementUncheckedCreateWithoutSessionInput> | CashMovementCreateWithoutSessionInput[] | CashMovementUncheckedCreateWithoutSessionInput[]
     connectOrCreate?: CashMovementCreateOrConnectWithoutSessionInput | CashMovementCreateOrConnectWithoutSessionInput[]
@@ -59190,6 +59476,24 @@ export namespace Prisma {
     update?: InvoiceUpdateWithWhereUniqueWithoutCashSessionInput | InvoiceUpdateWithWhereUniqueWithoutCashSessionInput[]
     updateMany?: InvoiceUpdateManyWithWhereWithoutCashSessionInput | InvoiceUpdateManyWithWhereWithoutCashSessionInput[]
     deleteMany?: InvoiceScalarWhereInput | InvoiceScalarWhereInput[]
+  }
+
+  export type RequestContextUpdateOneRequiredWithoutCashSessionsOpenedNestedInput = {
+    create?: XOR<RequestContextCreateWithoutCashSessionsOpenedInput, RequestContextUncheckedCreateWithoutCashSessionsOpenedInput>
+    connectOrCreate?: RequestContextCreateOrConnectWithoutCashSessionsOpenedInput
+    upsert?: RequestContextUpsertWithoutCashSessionsOpenedInput
+    connect?: RequestContextWhereUniqueInput
+    update?: XOR<XOR<RequestContextUpdateToOneWithWhereWithoutCashSessionsOpenedInput, RequestContextUpdateWithoutCashSessionsOpenedInput>, RequestContextUncheckedUpdateWithoutCashSessionsOpenedInput>
+  }
+
+  export type RequestContextUpdateOneWithoutCashSessionsClosedNestedInput = {
+    create?: XOR<RequestContextCreateWithoutCashSessionsClosedInput, RequestContextUncheckedCreateWithoutCashSessionsClosedInput>
+    connectOrCreate?: RequestContextCreateOrConnectWithoutCashSessionsClosedInput
+    upsert?: RequestContextUpsertWithoutCashSessionsClosedInput
+    disconnect?: RequestContextWhereInput | boolean
+    delete?: RequestContextWhereInput | boolean
+    connect?: RequestContextWhereUniqueInput
+    update?: XOR<XOR<RequestContextUpdateToOneWithWhereWithoutCashSessionsClosedInput, RequestContextUpdateWithoutCashSessionsClosedInput>, RequestContextUncheckedUpdateWithoutCashSessionsClosedInput>
   }
 
   export type CashMovementUncheckedUpdateManyWithoutSessionNestedInput = {
@@ -61301,6 +61605,8 @@ export namespace Prisma {
     closedBy?: UserCreateNestedOneWithoutCashSessionsCloseInput
     movements?: CashMovementCreateNestedManyWithoutSessionInput
     invoices?: InvoiceCreateNestedManyWithoutCashSessionInput
+    requestContext: RequestContextCreateNestedOneWithoutCashSessionsOpenedInput
+    closedRequestContext?: RequestContextCreateNestedOneWithoutCashSessionsClosedInput
   }
 
   export type CashSessionUncheckedCreateWithoutOpenedByInput = {
@@ -61313,6 +61619,8 @@ export namespace Prisma {
     declaredTotal?: Decimal | DecimalJsLike | number | string | null
     systemTotal?: Decimal | DecimalJsLike | number | string | null
     variance?: Decimal | DecimalJsLike | number | string | null
+    requestContextId: string
+    closedRequestContextId?: string | null
     movements?: CashMovementUncheckedCreateNestedManyWithoutSessionInput
     invoices?: InvoiceUncheckedCreateNestedManyWithoutCashSessionInput
   }
@@ -61339,6 +61647,8 @@ export namespace Prisma {
     openedBy: UserCreateNestedOneWithoutCashSessionsOpenInput
     movements?: CashMovementCreateNestedManyWithoutSessionInput
     invoices?: InvoiceCreateNestedManyWithoutCashSessionInput
+    requestContext: RequestContextCreateNestedOneWithoutCashSessionsOpenedInput
+    closedRequestContext?: RequestContextCreateNestedOneWithoutCashSessionsClosedInput
   }
 
   export type CashSessionUncheckedCreateWithoutClosedByInput = {
@@ -61351,6 +61661,8 @@ export namespace Prisma {
     declaredTotal?: Decimal | DecimalJsLike | number | string | null
     systemTotal?: Decimal | DecimalJsLike | number | string | null
     variance?: Decimal | DecimalJsLike | number | string | null
+    requestContextId: string
+    closedRequestContextId?: string | null
     movements?: CashMovementUncheckedCreateNestedManyWithoutSessionInput
     invoices?: InvoiceUncheckedCreateNestedManyWithoutCashSessionInput
   }
@@ -61840,6 +62152,8 @@ export namespace Prisma {
     declaredTotal?: DecimalNullableFilter<"CashSession"> | Decimal | DecimalJsLike | number | string | null
     systemTotal?: DecimalNullableFilter<"CashSession"> | Decimal | DecimalJsLike | number | string | null
     variance?: DecimalNullableFilter<"CashSession"> | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: UuidFilter<"CashSession"> | string
+    closedRequestContextId?: UuidNullableFilter<"CashSession"> | string | null
   }
 
   export type CashSessionUpsertWithWhereUniqueWithoutClosedByInput = {
@@ -62567,6 +62881,8 @@ export namespace Prisma {
     closedBy?: UserCreateNestedOneWithoutCashSessionsCloseInput
     movements?: CashMovementCreateNestedManyWithoutSessionInput
     invoices?: InvoiceCreateNestedManyWithoutCashSessionInput
+    requestContext: RequestContextCreateNestedOneWithoutCashSessionsOpenedInput
+    closedRequestContext?: RequestContextCreateNestedOneWithoutCashSessionsClosedInput
   }
 
   export type CashSessionUncheckedCreateWithoutRegisterInput = {
@@ -62579,6 +62895,8 @@ export namespace Prisma {
     declaredTotal?: Decimal | DecimalJsLike | number | string | null
     systemTotal?: Decimal | DecimalJsLike | number | string | null
     variance?: Decimal | DecimalJsLike | number | string | null
+    requestContextId: string
+    closedRequestContextId?: string | null
     movements?: CashMovementUncheckedCreateNestedManyWithoutSessionInput
     invoices?: InvoiceUncheckedCreateNestedManyWithoutCashSessionInput
   }
@@ -62920,6 +63238,8 @@ export namespace Prisma {
     labOrders?: LabOrderCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextUncheckedCreateWithoutWorkstationInput = {
@@ -62941,6 +63261,8 @@ export namespace Prisma {
     labOrders?: LabOrderUncheckedCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestUncheckedCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionUncheckedCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextCreateOrConnectWithoutWorkstationInput = {
@@ -63589,6 +63911,8 @@ export namespace Prisma {
     labOrders?: LabOrderCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextUncheckedCreateWithoutSessionInput = {
@@ -63610,6 +63934,8 @@ export namespace Prisma {
     labOrders?: LabOrderUncheckedCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestUncheckedCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionUncheckedCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextCreateOrConnectWithoutSessionInput = {
@@ -64094,6 +64420,90 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CashSessionCreateWithoutRequestContextInput = {
+    id?: string
+    openedAt?: Date | string
+    openingFloat: Decimal | DecimalJsLike | number | string
+    closedAt?: Date | string | null
+    declaredTotal?: Decimal | DecimalJsLike | number | string | null
+    systemTotal?: Decimal | DecimalJsLike | number | string | null
+    variance?: Decimal | DecimalJsLike | number | string | null
+    register: CashRegisterCreateNestedOneWithoutSessionsInput
+    openedBy: UserCreateNestedOneWithoutCashSessionsOpenInput
+    closedBy?: UserCreateNestedOneWithoutCashSessionsCloseInput
+    movements?: CashMovementCreateNestedManyWithoutSessionInput
+    invoices?: InvoiceCreateNestedManyWithoutCashSessionInput
+    closedRequestContext?: RequestContextCreateNestedOneWithoutCashSessionsClosedInput
+  }
+
+  export type CashSessionUncheckedCreateWithoutRequestContextInput = {
+    id?: string
+    registerId: string
+    openedById: string
+    openedAt?: Date | string
+    openingFloat: Decimal | DecimalJsLike | number | string
+    closedById?: string | null
+    closedAt?: Date | string | null
+    declaredTotal?: Decimal | DecimalJsLike | number | string | null
+    systemTotal?: Decimal | DecimalJsLike | number | string | null
+    variance?: Decimal | DecimalJsLike | number | string | null
+    closedRequestContextId?: string | null
+    movements?: CashMovementUncheckedCreateNestedManyWithoutSessionInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutCashSessionInput
+  }
+
+  export type CashSessionCreateOrConnectWithoutRequestContextInput = {
+    where: CashSessionWhereUniqueInput
+    create: XOR<CashSessionCreateWithoutRequestContextInput, CashSessionUncheckedCreateWithoutRequestContextInput>
+  }
+
+  export type CashSessionCreateManyRequestContextInputEnvelope = {
+    data: CashSessionCreateManyRequestContextInput | CashSessionCreateManyRequestContextInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CashSessionCreateWithoutClosedRequestContextInput = {
+    id?: string
+    openedAt?: Date | string
+    openingFloat: Decimal | DecimalJsLike | number | string
+    closedAt?: Date | string | null
+    declaredTotal?: Decimal | DecimalJsLike | number | string | null
+    systemTotal?: Decimal | DecimalJsLike | number | string | null
+    variance?: Decimal | DecimalJsLike | number | string | null
+    register: CashRegisterCreateNestedOneWithoutSessionsInput
+    openedBy: UserCreateNestedOneWithoutCashSessionsOpenInput
+    closedBy?: UserCreateNestedOneWithoutCashSessionsCloseInput
+    movements?: CashMovementCreateNestedManyWithoutSessionInput
+    invoices?: InvoiceCreateNestedManyWithoutCashSessionInput
+    requestContext: RequestContextCreateNestedOneWithoutCashSessionsOpenedInput
+  }
+
+  export type CashSessionUncheckedCreateWithoutClosedRequestContextInput = {
+    id?: string
+    registerId: string
+    openedById: string
+    openedAt?: Date | string
+    openingFloat: Decimal | DecimalJsLike | number | string
+    closedById?: string | null
+    closedAt?: Date | string | null
+    declaredTotal?: Decimal | DecimalJsLike | number | string | null
+    systemTotal?: Decimal | DecimalJsLike | number | string | null
+    variance?: Decimal | DecimalJsLike | number | string | null
+    requestContextId: string
+    movements?: CashMovementUncheckedCreateNestedManyWithoutSessionInput
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutCashSessionInput
+  }
+
+  export type CashSessionCreateOrConnectWithoutClosedRequestContextInput = {
+    where: CashSessionWhereUniqueInput
+    create: XOR<CashSessionCreateWithoutClosedRequestContextInput, CashSessionUncheckedCreateWithoutClosedRequestContextInput>
+  }
+
+  export type CashSessionCreateManyClosedRequestContextInputEnvelope = {
+    data: CashSessionCreateManyClosedRequestContextInput | CashSessionCreateManyClosedRequestContextInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AuthSessionUpsertWithoutContextsInput = {
     update: XOR<AuthSessionUpdateWithoutContextsInput, AuthSessionUncheckedUpdateWithoutContextsInput>
     create: XOR<AuthSessionCreateWithoutContextsInput, AuthSessionUncheckedCreateWithoutContextsInput>
@@ -64306,6 +64716,38 @@ export namespace Prisma {
     data: XOR<ActivityLogUpdateManyMutationInput, ActivityLogUncheckedUpdateManyWithoutRequestContextInput>
   }
 
+  export type CashSessionUpsertWithWhereUniqueWithoutRequestContextInput = {
+    where: CashSessionWhereUniqueInput
+    update: XOR<CashSessionUpdateWithoutRequestContextInput, CashSessionUncheckedUpdateWithoutRequestContextInput>
+    create: XOR<CashSessionCreateWithoutRequestContextInput, CashSessionUncheckedCreateWithoutRequestContextInput>
+  }
+
+  export type CashSessionUpdateWithWhereUniqueWithoutRequestContextInput = {
+    where: CashSessionWhereUniqueInput
+    data: XOR<CashSessionUpdateWithoutRequestContextInput, CashSessionUncheckedUpdateWithoutRequestContextInput>
+  }
+
+  export type CashSessionUpdateManyWithWhereWithoutRequestContextInput = {
+    where: CashSessionScalarWhereInput
+    data: XOR<CashSessionUpdateManyMutationInput, CashSessionUncheckedUpdateManyWithoutRequestContextInput>
+  }
+
+  export type CashSessionUpsertWithWhereUniqueWithoutClosedRequestContextInput = {
+    where: CashSessionWhereUniqueInput
+    update: XOR<CashSessionUpdateWithoutClosedRequestContextInput, CashSessionUncheckedUpdateWithoutClosedRequestContextInput>
+    create: XOR<CashSessionCreateWithoutClosedRequestContextInput, CashSessionUncheckedCreateWithoutClosedRequestContextInput>
+  }
+
+  export type CashSessionUpdateWithWhereUniqueWithoutClosedRequestContextInput = {
+    where: CashSessionWhereUniqueInput
+    data: XOR<CashSessionUpdateWithoutClosedRequestContextInput, CashSessionUncheckedUpdateWithoutClosedRequestContextInput>
+  }
+
+  export type CashSessionUpdateManyWithWhereWithoutClosedRequestContextInput = {
+    where: CashSessionScalarWhereInput
+    data: XOR<CashSessionUpdateManyMutationInput, CashSessionUncheckedUpdateManyWithoutClosedRequestContextInput>
+  }
+
   export type PatientCreateWithoutPreclinicsInput = {
     id?: string
     mrn: string
@@ -64485,6 +64927,8 @@ export namespace Prisma {
     labOrders?: LabOrderCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextUncheckedCreateWithoutPreclinicsInput = {
@@ -64506,6 +64950,8 @@ export namespace Prisma {
     labOrders?: LabOrderUncheckedCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestUncheckedCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionUncheckedCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextCreateOrConnectWithoutPreclinicsInput = {
@@ -64737,6 +65183,8 @@ export namespace Prisma {
     labOrders?: LabOrderUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type RequestContextUncheckedUpdateWithoutPreclinicsInput = {
@@ -64758,6 +65206,8 @@ export namespace Prisma {
     labOrders?: LabOrderUncheckedUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUncheckedUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUncheckedUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type InvoiceUpsertWithWhereUniqueWithoutPreclinicInput = {
@@ -66025,6 +66475,8 @@ export namespace Prisma {
     openedBy: UserCreateNestedOneWithoutCashSessionsOpenInput
     closedBy?: UserCreateNestedOneWithoutCashSessionsCloseInput
     movements?: CashMovementCreateNestedManyWithoutSessionInput
+    requestContext: RequestContextCreateNestedOneWithoutCashSessionsOpenedInput
+    closedRequestContext?: RequestContextCreateNestedOneWithoutCashSessionsClosedInput
   }
 
   export type CashSessionUncheckedCreateWithoutInvoicesInput = {
@@ -66038,6 +66490,8 @@ export namespace Prisma {
     declaredTotal?: Decimal | DecimalJsLike | number | string | null
     systemTotal?: Decimal | DecimalJsLike | number | string | null
     variance?: Decimal | DecimalJsLike | number | string | null
+    requestContextId: string
+    closedRequestContextId?: string | null
     movements?: CashMovementUncheckedCreateNestedManyWithoutSessionInput
   }
 
@@ -66065,6 +66519,8 @@ export namespace Prisma {
     labOrders?: LabOrderCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextUncheckedCreateWithoutInvoicesInput = {
@@ -66086,6 +66542,8 @@ export namespace Prisma {
     labOrders?: LabOrderUncheckedCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestUncheckedCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionUncheckedCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextCreateOrConnectWithoutInvoicesInput = {
@@ -66485,6 +66943,8 @@ export namespace Prisma {
     openedBy?: UserUpdateOneRequiredWithoutCashSessionsOpenNestedInput
     closedBy?: UserUpdateOneWithoutCashSessionsCloseNestedInput
     movements?: CashMovementUpdateManyWithoutSessionNestedInput
+    requestContext?: RequestContextUpdateOneRequiredWithoutCashSessionsOpenedNestedInput
+    closedRequestContext?: RequestContextUpdateOneWithoutCashSessionsClosedNestedInput
   }
 
   export type CashSessionUncheckedUpdateWithoutInvoicesInput = {
@@ -66498,6 +66958,8 @@ export namespace Prisma {
     declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: StringFieldUpdateOperationsInput | string
+    closedRequestContextId?: NullableStringFieldUpdateOperationsInput | string | null
     movements?: CashMovementUncheckedUpdateManyWithoutSessionNestedInput
   }
 
@@ -66531,6 +66993,8 @@ export namespace Prisma {
     labOrders?: LabOrderUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type RequestContextUncheckedUpdateWithoutInvoicesInput = {
@@ -66552,6 +67016,8 @@ export namespace Prisma {
     labOrders?: LabOrderUncheckedUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUncheckedUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUncheckedUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type InvoiceLineUpsertWithWhereUniqueWithoutInvoiceInput = {
@@ -67198,6 +67664,8 @@ export namespace Prisma {
     labOrders?: LabOrderCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextUncheckedCreateWithoutPaymentsInput = {
@@ -67219,6 +67687,8 @@ export namespace Prisma {
     labOrders?: LabOrderUncheckedCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestUncheckedCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionUncheckedCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextCreateOrConnectWithoutPaymentsInput = {
@@ -67395,6 +67865,8 @@ export namespace Prisma {
     labOrders?: LabOrderUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type RequestContextUncheckedUpdateWithoutPaymentsInput = {
@@ -67416,6 +67888,8 @@ export namespace Prisma {
     labOrders?: LabOrderUncheckedUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUncheckedUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUncheckedUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type CashRegisterCreateWithoutSessionsInput = {
@@ -67629,6 +68103,108 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type RequestContextCreateWithoutCashSessionsOpenedInput = {
+    id?: string
+    occurredAt?: Date | string
+    ipAddress: string
+    userAgent: string
+    deviceFingerprint?: string | null
+    geoCountry?: string | null
+    geoRegion?: string | null
+    geoCity?: string | null
+    geoLat?: Decimal | DecimalJsLike | number | string | null
+    geoLon?: Decimal | DecimalJsLike | number | string | null
+    session: AuthSessionCreateNestedOneWithoutContextsInput
+    workstation?: WorkstationCreateNestedOneWithoutContextsInput
+    invoices?: InvoiceCreateNestedManyWithoutRequestContextInput
+    payments?: PaymentCreateNestedManyWithoutRequestContextInput
+    cashMoves?: CashMovementCreateNestedManyWithoutRequestContextInput
+    preclinics?: PreclinicCreateNestedManyWithoutRequestContextInput
+    labOrders?: LabOrderCreateNestedManyWithoutRequestContextInput
+    labOrderTests?: LabOrderTestCreateNestedManyWithoutRequestContextInput
+    activities?: ActivityLogCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionCreateNestedManyWithoutClosedRequestContextInput
+  }
+
+  export type RequestContextUncheckedCreateWithoutCashSessionsOpenedInput = {
+    id?: string
+    sessionId: string
+    occurredAt?: Date | string
+    ipAddress: string
+    userAgent: string
+    deviceFingerprint?: string | null
+    workstationId?: string | null
+    geoCountry?: string | null
+    geoRegion?: string | null
+    geoCity?: string | null
+    geoLat?: Decimal | DecimalJsLike | number | string | null
+    geoLon?: Decimal | DecimalJsLike | number | string | null
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutRequestContextInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutRequestContextInput
+    cashMoves?: CashMovementUncheckedCreateNestedManyWithoutRequestContextInput
+    preclinics?: PreclinicUncheckedCreateNestedManyWithoutRequestContextInput
+    labOrders?: LabOrderUncheckedCreateNestedManyWithoutRequestContextInput
+    labOrderTests?: LabOrderTestUncheckedCreateNestedManyWithoutRequestContextInput
+    activities?: ActivityLogUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionUncheckedCreateNestedManyWithoutClosedRequestContextInput
+  }
+
+  export type RequestContextCreateOrConnectWithoutCashSessionsOpenedInput = {
+    where: RequestContextWhereUniqueInput
+    create: XOR<RequestContextCreateWithoutCashSessionsOpenedInput, RequestContextUncheckedCreateWithoutCashSessionsOpenedInput>
+  }
+
+  export type RequestContextCreateWithoutCashSessionsClosedInput = {
+    id?: string
+    occurredAt?: Date | string
+    ipAddress: string
+    userAgent: string
+    deviceFingerprint?: string | null
+    geoCountry?: string | null
+    geoRegion?: string | null
+    geoCity?: string | null
+    geoLat?: Decimal | DecimalJsLike | number | string | null
+    geoLon?: Decimal | DecimalJsLike | number | string | null
+    session: AuthSessionCreateNestedOneWithoutContextsInput
+    workstation?: WorkstationCreateNestedOneWithoutContextsInput
+    invoices?: InvoiceCreateNestedManyWithoutRequestContextInput
+    payments?: PaymentCreateNestedManyWithoutRequestContextInput
+    cashMoves?: CashMovementCreateNestedManyWithoutRequestContextInput
+    preclinics?: PreclinicCreateNestedManyWithoutRequestContextInput
+    labOrders?: LabOrderCreateNestedManyWithoutRequestContextInput
+    labOrderTests?: LabOrderTestCreateNestedManyWithoutRequestContextInput
+    activities?: ActivityLogCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionCreateNestedManyWithoutRequestContextInput
+  }
+
+  export type RequestContextUncheckedCreateWithoutCashSessionsClosedInput = {
+    id?: string
+    sessionId: string
+    occurredAt?: Date | string
+    ipAddress: string
+    userAgent: string
+    deviceFingerprint?: string | null
+    workstationId?: string | null
+    geoCountry?: string | null
+    geoRegion?: string | null
+    geoCity?: string | null
+    geoLat?: Decimal | DecimalJsLike | number | string | null
+    geoLon?: Decimal | DecimalJsLike | number | string | null
+    invoices?: InvoiceUncheckedCreateNestedManyWithoutRequestContextInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutRequestContextInput
+    cashMoves?: CashMovementUncheckedCreateNestedManyWithoutRequestContextInput
+    preclinics?: PreclinicUncheckedCreateNestedManyWithoutRequestContextInput
+    labOrders?: LabOrderUncheckedCreateNestedManyWithoutRequestContextInput
+    labOrderTests?: LabOrderTestUncheckedCreateNestedManyWithoutRequestContextInput
+    activities?: ActivityLogUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionUncheckedCreateNestedManyWithoutRequestContextInput
+  }
+
+  export type RequestContextCreateOrConnectWithoutCashSessionsClosedInput = {
+    where: RequestContextWhereUniqueInput
+    create: XOR<RequestContextCreateWithoutCashSessionsClosedInput, RequestContextUncheckedCreateWithoutCashSessionsClosedInput>
+  }
+
   export type CashRegisterUpsertWithoutSessionsInput = {
     update: XOR<CashRegisterUpdateWithoutSessionsInput, CashRegisterUncheckedUpdateWithoutSessionsInput>
     create: XOR<CashRegisterCreateWithoutSessionsInput, CashRegisterUncheckedCreateWithoutSessionsInput>
@@ -67808,6 +68384,120 @@ export namespace Prisma {
     data: XOR<InvoiceUpdateManyMutationInput, InvoiceUncheckedUpdateManyWithoutCashSessionInput>
   }
 
+  export type RequestContextUpsertWithoutCashSessionsOpenedInput = {
+    update: XOR<RequestContextUpdateWithoutCashSessionsOpenedInput, RequestContextUncheckedUpdateWithoutCashSessionsOpenedInput>
+    create: XOR<RequestContextCreateWithoutCashSessionsOpenedInput, RequestContextUncheckedCreateWithoutCashSessionsOpenedInput>
+    where?: RequestContextWhereInput
+  }
+
+  export type RequestContextUpdateToOneWithWhereWithoutCashSessionsOpenedInput = {
+    where?: RequestContextWhereInput
+    data: XOR<RequestContextUpdateWithoutCashSessionsOpenedInput, RequestContextUncheckedUpdateWithoutCashSessionsOpenedInput>
+  }
+
+  export type RequestContextUpdateWithoutCashSessionsOpenedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    occurredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: StringFieldUpdateOperationsInput | string
+    userAgent?: StringFieldUpdateOperationsInput | string
+    deviceFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
+    geoCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    geoRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    geoCity?: NullableStringFieldUpdateOperationsInput | string | null
+    geoLat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    geoLon?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    session?: AuthSessionUpdateOneRequiredWithoutContextsNestedInput
+    workstation?: WorkstationUpdateOneWithoutContextsNestedInput
+    invoices?: InvoiceUpdateManyWithoutRequestContextNestedInput
+    payments?: PaymentUpdateManyWithoutRequestContextNestedInput
+    cashMoves?: CashMovementUpdateManyWithoutRequestContextNestedInput
+    preclinics?: PreclinicUpdateManyWithoutRequestContextNestedInput
+    labOrders?: LabOrderUpdateManyWithoutRequestContextNestedInput
+    labOrderTests?: LabOrderTestUpdateManyWithoutRequestContextNestedInput
+    activities?: ActivityLogUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUpdateManyWithoutClosedRequestContextNestedInput
+  }
+
+  export type RequestContextUncheckedUpdateWithoutCashSessionsOpenedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    occurredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: StringFieldUpdateOperationsInput | string
+    userAgent?: StringFieldUpdateOperationsInput | string
+    deviceFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
+    workstationId?: NullableStringFieldUpdateOperationsInput | string | null
+    geoCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    geoRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    geoCity?: NullableStringFieldUpdateOperationsInput | string | null
+    geoLat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    geoLon?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    invoices?: InvoiceUncheckedUpdateManyWithoutRequestContextNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashMoves?: CashMovementUncheckedUpdateManyWithoutRequestContextNestedInput
+    preclinics?: PreclinicUncheckedUpdateManyWithoutRequestContextNestedInput
+    labOrders?: LabOrderUncheckedUpdateManyWithoutRequestContextNestedInput
+    labOrderTests?: LabOrderTestUncheckedUpdateManyWithoutRequestContextNestedInput
+    activities?: ActivityLogUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUncheckedUpdateManyWithoutClosedRequestContextNestedInput
+  }
+
+  export type RequestContextUpsertWithoutCashSessionsClosedInput = {
+    update: XOR<RequestContextUpdateWithoutCashSessionsClosedInput, RequestContextUncheckedUpdateWithoutCashSessionsClosedInput>
+    create: XOR<RequestContextCreateWithoutCashSessionsClosedInput, RequestContextUncheckedCreateWithoutCashSessionsClosedInput>
+    where?: RequestContextWhereInput
+  }
+
+  export type RequestContextUpdateToOneWithWhereWithoutCashSessionsClosedInput = {
+    where?: RequestContextWhereInput
+    data: XOR<RequestContextUpdateWithoutCashSessionsClosedInput, RequestContextUncheckedUpdateWithoutCashSessionsClosedInput>
+  }
+
+  export type RequestContextUpdateWithoutCashSessionsClosedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    occurredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: StringFieldUpdateOperationsInput | string
+    userAgent?: StringFieldUpdateOperationsInput | string
+    deviceFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
+    geoCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    geoRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    geoCity?: NullableStringFieldUpdateOperationsInput | string | null
+    geoLat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    geoLon?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    session?: AuthSessionUpdateOneRequiredWithoutContextsNestedInput
+    workstation?: WorkstationUpdateOneWithoutContextsNestedInput
+    invoices?: InvoiceUpdateManyWithoutRequestContextNestedInput
+    payments?: PaymentUpdateManyWithoutRequestContextNestedInput
+    cashMoves?: CashMovementUpdateManyWithoutRequestContextNestedInput
+    preclinics?: PreclinicUpdateManyWithoutRequestContextNestedInput
+    labOrders?: LabOrderUpdateManyWithoutRequestContextNestedInput
+    labOrderTests?: LabOrderTestUpdateManyWithoutRequestContextNestedInput
+    activities?: ActivityLogUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUpdateManyWithoutRequestContextNestedInput
+  }
+
+  export type RequestContextUncheckedUpdateWithoutCashSessionsClosedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    occurredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: StringFieldUpdateOperationsInput | string
+    userAgent?: StringFieldUpdateOperationsInput | string
+    deviceFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
+    workstationId?: NullableStringFieldUpdateOperationsInput | string | null
+    geoCountry?: NullableStringFieldUpdateOperationsInput | string | null
+    geoRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    geoCity?: NullableStringFieldUpdateOperationsInput | string | null
+    geoLat?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    geoLon?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    invoices?: InvoiceUncheckedUpdateManyWithoutRequestContextNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashMoves?: CashMovementUncheckedUpdateManyWithoutRequestContextNestedInput
+    preclinics?: PreclinicUncheckedUpdateManyWithoutRequestContextNestedInput
+    labOrders?: LabOrderUncheckedUpdateManyWithoutRequestContextNestedInput
+    labOrderTests?: LabOrderTestUncheckedUpdateManyWithoutRequestContextNestedInput
+    activities?: ActivityLogUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUncheckedUpdateManyWithoutRequestContextNestedInput
+  }
+
   export type CashSessionCreateWithoutMovementsInput = {
     id?: string
     openedAt?: Date | string
@@ -67820,6 +68510,8 @@ export namespace Prisma {
     openedBy: UserCreateNestedOneWithoutCashSessionsOpenInput
     closedBy?: UserCreateNestedOneWithoutCashSessionsCloseInput
     invoices?: InvoiceCreateNestedManyWithoutCashSessionInput
+    requestContext: RequestContextCreateNestedOneWithoutCashSessionsOpenedInput
+    closedRequestContext?: RequestContextCreateNestedOneWithoutCashSessionsClosedInput
   }
 
   export type CashSessionUncheckedCreateWithoutMovementsInput = {
@@ -67833,6 +68525,8 @@ export namespace Prisma {
     declaredTotal?: Decimal | DecimalJsLike | number | string | null
     systemTotal?: Decimal | DecimalJsLike | number | string | null
     variance?: Decimal | DecimalJsLike | number | string | null
+    requestContextId: string
+    closedRequestContextId?: string | null
     invoices?: InvoiceUncheckedCreateNestedManyWithoutCashSessionInput
   }
 
@@ -67915,6 +68609,8 @@ export namespace Prisma {
     labOrders?: LabOrderCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextUncheckedCreateWithoutCashMovesInput = {
@@ -67936,6 +68632,8 @@ export namespace Prisma {
     labOrders?: LabOrderUncheckedCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestUncheckedCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionUncheckedCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextCreateOrConnectWithoutCashMovesInput = {
@@ -67966,6 +68664,8 @@ export namespace Prisma {
     openedBy?: UserUpdateOneRequiredWithoutCashSessionsOpenNestedInput
     closedBy?: UserUpdateOneWithoutCashSessionsCloseNestedInput
     invoices?: InvoiceUpdateManyWithoutCashSessionNestedInput
+    requestContext?: RequestContextUpdateOneRequiredWithoutCashSessionsOpenedNestedInput
+    closedRequestContext?: RequestContextUpdateOneWithoutCashSessionsClosedNestedInput
   }
 
   export type CashSessionUncheckedUpdateWithoutMovementsInput = {
@@ -67979,6 +68679,8 @@ export namespace Prisma {
     declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: StringFieldUpdateOperationsInput | string
+    closedRequestContextId?: NullableStringFieldUpdateOperationsInput | string | null
     invoices?: InvoiceUncheckedUpdateManyWithoutCashSessionNestedInput
   }
 
@@ -68073,6 +68775,8 @@ export namespace Prisma {
     labOrders?: LabOrderUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type RequestContextUncheckedUpdateWithoutCashMovesInput = {
@@ -68094,6 +68798,8 @@ export namespace Prisma {
     labOrders?: LabOrderUncheckedUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUncheckedUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUncheckedUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type ProductStockCreateWithoutProductInput = {
@@ -69589,6 +70295,8 @@ export namespace Prisma {
     preclinics?: PreclinicCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextUncheckedCreateWithoutLabOrdersInput = {
@@ -69610,6 +70318,8 @@ export namespace Prisma {
     preclinics?: PreclinicUncheckedCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestUncheckedCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionUncheckedCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextCreateOrConnectWithoutLabOrdersInput = {
@@ -70041,6 +70751,8 @@ export namespace Prisma {
     preclinics?: PreclinicUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type RequestContextUncheckedUpdateWithoutLabOrdersInput = {
@@ -70062,6 +70774,8 @@ export namespace Prisma {
     preclinics?: PreclinicUncheckedUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUncheckedUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUncheckedUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type LabOrderTestUpsertWithWhereUniqueWithoutOrderInput = {
@@ -70218,6 +70932,8 @@ export namespace Prisma {
     preclinics?: PreclinicCreateNestedManyWithoutRequestContextInput
     labOrders?: LabOrderCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextUncheckedCreateWithoutLabOrderTestsInput = {
@@ -70239,6 +70955,8 @@ export namespace Prisma {
     preclinics?: PreclinicUncheckedCreateNestedManyWithoutRequestContextInput
     labOrders?: LabOrderUncheckedCreateNestedManyWithoutRequestContextInput
     activities?: ActivityLogUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionUncheckedCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextCreateOrConnectWithoutLabOrderTestsInput = {
@@ -70397,6 +71115,8 @@ export namespace Prisma {
     preclinics?: PreclinicUpdateManyWithoutRequestContextNestedInput
     labOrders?: LabOrderUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type RequestContextUncheckedUpdateWithoutLabOrderTestsInput = {
@@ -70418,6 +71138,8 @@ export namespace Prisma {
     preclinics?: PreclinicUncheckedUpdateManyWithoutRequestContextNestedInput
     labOrders?: LabOrderUncheckedUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUncheckedUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type LabInstrumentCreateWithoutMessagesInput = {
@@ -70646,6 +71368,8 @@ export namespace Prisma {
     preclinics?: PreclinicCreateNestedManyWithoutRequestContextInput
     labOrders?: LabOrderCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextUncheckedCreateWithoutActivitiesInput = {
@@ -70667,6 +71391,8 @@ export namespace Prisma {
     preclinics?: PreclinicUncheckedCreateNestedManyWithoutRequestContextInput
     labOrders?: LabOrderUncheckedCreateNestedManyWithoutRequestContextInput
     labOrderTests?: LabOrderTestUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsOpened?: CashSessionUncheckedCreateNestedManyWithoutRequestContextInput
+    cashSessionsClosed?: CashSessionUncheckedCreateNestedManyWithoutClosedRequestContextInput
   }
 
   export type RequestContextCreateOrConnectWithoutActivitiesInput = {
@@ -70765,6 +71491,8 @@ export namespace Prisma {
     preclinics?: PreclinicUpdateManyWithoutRequestContextNestedInput
     labOrders?: LabOrderUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type RequestContextUncheckedUpdateWithoutActivitiesInput = {
@@ -70786,6 +71514,8 @@ export namespace Prisma {
     preclinics?: PreclinicUncheckedUpdateManyWithoutRequestContextNestedInput
     labOrders?: LabOrderUncheckedUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUncheckedUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type UserRoleCreateManyRoleInput = {
@@ -70937,6 +71667,8 @@ export namespace Prisma {
     declaredTotal?: Decimal | DecimalJsLike | number | string | null
     systemTotal?: Decimal | DecimalJsLike | number | string | null
     variance?: Decimal | DecimalJsLike | number | string | null
+    requestContextId: string
+    closedRequestContextId?: string | null
   }
 
   export type CashSessionCreateManyClosedByInput = {
@@ -70949,6 +71681,8 @@ export namespace Prisma {
     declaredTotal?: Decimal | DecimalJsLike | number | string | null
     systemTotal?: Decimal | DecimalJsLike | number | string | null
     variance?: Decimal | DecimalJsLike | number | string | null
+    requestContextId: string
+    closedRequestContextId?: string | null
   }
 
   export type CashMovementCreateManyCreatedByInput = {
@@ -71407,6 +72141,8 @@ export namespace Prisma {
     closedBy?: UserUpdateOneWithoutCashSessionsCloseNestedInput
     movements?: CashMovementUpdateManyWithoutSessionNestedInput
     invoices?: InvoiceUpdateManyWithoutCashSessionNestedInput
+    requestContext?: RequestContextUpdateOneRequiredWithoutCashSessionsOpenedNestedInput
+    closedRequestContext?: RequestContextUpdateOneWithoutCashSessionsClosedNestedInput
   }
 
   export type CashSessionUncheckedUpdateWithoutOpenedByInput = {
@@ -71419,6 +72155,8 @@ export namespace Prisma {
     declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: StringFieldUpdateOperationsInput | string
+    closedRequestContextId?: NullableStringFieldUpdateOperationsInput | string | null
     movements?: CashMovementUncheckedUpdateManyWithoutSessionNestedInput
     invoices?: InvoiceUncheckedUpdateManyWithoutCashSessionNestedInput
   }
@@ -71433,6 +72171,8 @@ export namespace Prisma {
     declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: StringFieldUpdateOperationsInput | string
+    closedRequestContextId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CashSessionUpdateWithoutClosedByInput = {
@@ -71447,6 +72187,8 @@ export namespace Prisma {
     openedBy?: UserUpdateOneRequiredWithoutCashSessionsOpenNestedInput
     movements?: CashMovementUpdateManyWithoutSessionNestedInput
     invoices?: InvoiceUpdateManyWithoutCashSessionNestedInput
+    requestContext?: RequestContextUpdateOneRequiredWithoutCashSessionsOpenedNestedInput
+    closedRequestContext?: RequestContextUpdateOneWithoutCashSessionsClosedNestedInput
   }
 
   export type CashSessionUncheckedUpdateWithoutClosedByInput = {
@@ -71459,6 +72201,8 @@ export namespace Prisma {
     declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: StringFieldUpdateOperationsInput | string
+    closedRequestContextId?: NullableStringFieldUpdateOperationsInput | string | null
     movements?: CashMovementUncheckedUpdateManyWithoutSessionNestedInput
     invoices?: InvoiceUncheckedUpdateManyWithoutCashSessionNestedInput
   }
@@ -71473,6 +72217,8 @@ export namespace Prisma {
     declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: StringFieldUpdateOperationsInput | string
+    closedRequestContextId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CashMovementUpdateWithoutCreatedByInput = {
@@ -71920,6 +72666,8 @@ export namespace Prisma {
     declaredTotal?: Decimal | DecimalJsLike | number | string | null
     systemTotal?: Decimal | DecimalJsLike | number | string | null
     variance?: Decimal | DecimalJsLike | number | string | null
+    requestContextId: string
+    closedRequestContextId?: string | null
   }
 
   export type InvoiceCreateManyRegisterInput = {
@@ -71951,6 +72699,8 @@ export namespace Prisma {
     closedBy?: UserUpdateOneWithoutCashSessionsCloseNestedInput
     movements?: CashMovementUpdateManyWithoutSessionNestedInput
     invoices?: InvoiceUpdateManyWithoutCashSessionNestedInput
+    requestContext?: RequestContextUpdateOneRequiredWithoutCashSessionsOpenedNestedInput
+    closedRequestContext?: RequestContextUpdateOneWithoutCashSessionsClosedNestedInput
   }
 
   export type CashSessionUncheckedUpdateWithoutRegisterInput = {
@@ -71963,6 +72713,8 @@ export namespace Prisma {
     declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: StringFieldUpdateOperationsInput | string
+    closedRequestContextId?: NullableStringFieldUpdateOperationsInput | string | null
     movements?: CashMovementUncheckedUpdateManyWithoutSessionNestedInput
     invoices?: InvoiceUncheckedUpdateManyWithoutCashSessionNestedInput
   }
@@ -71977,6 +72729,8 @@ export namespace Prisma {
     declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: StringFieldUpdateOperationsInput | string
+    closedRequestContextId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type InvoiceUpdateWithoutRegisterInput = {
@@ -72191,6 +72945,8 @@ export namespace Prisma {
     labOrders?: LabOrderUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type RequestContextUncheckedUpdateWithoutWorkstationInput = {
@@ -72212,6 +72968,8 @@ export namespace Prisma {
     labOrders?: LabOrderUncheckedUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUncheckedUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUncheckedUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type RequestContextUncheckedUpdateManyWithoutWorkstationInput = {
@@ -72603,6 +73361,8 @@ export namespace Prisma {
     labOrders?: LabOrderUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type RequestContextUncheckedUpdateWithoutSessionInput = {
@@ -72624,6 +73384,8 @@ export namespace Prisma {
     labOrders?: LabOrderUncheckedUpdateManyWithoutRequestContextNestedInput
     labOrderTests?: LabOrderTestUncheckedUpdateManyWithoutRequestContextNestedInput
     activities?: ActivityLogUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsOpened?: CashSessionUncheckedUpdateManyWithoutRequestContextNestedInput
+    cashSessionsClosed?: CashSessionUncheckedUpdateManyWithoutClosedRequestContextNestedInput
   }
 
   export type RequestContextUncheckedUpdateManyWithoutSessionInput = {
@@ -72744,6 +73506,34 @@ export namespace Prisma {
     actorId: string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
+  }
+
+  export type CashSessionCreateManyRequestContextInput = {
+    id?: string
+    registerId: string
+    openedById: string
+    openedAt?: Date | string
+    openingFloat: Decimal | DecimalJsLike | number | string
+    closedById?: string | null
+    closedAt?: Date | string | null
+    declaredTotal?: Decimal | DecimalJsLike | number | string | null
+    systemTotal?: Decimal | DecimalJsLike | number | string | null
+    variance?: Decimal | DecimalJsLike | number | string | null
+    closedRequestContextId?: string | null
+  }
+
+  export type CashSessionCreateManyClosedRequestContextInput = {
+    id?: string
+    registerId: string
+    openedById: string
+    openedAt?: Date | string
+    openingFloat: Decimal | DecimalJsLike | number | string
+    closedById?: string | null
+    closedAt?: Date | string | null
+    declaredTotal?: Decimal | DecimalJsLike | number | string | null
+    systemTotal?: Decimal | DecimalJsLike | number | string | null
+    variance?: Decimal | DecimalJsLike | number | string | null
+    requestContextId: string
   }
 
   export type InvoiceUpdateWithoutRequestContextInput = {
@@ -73076,6 +73866,98 @@ export namespace Prisma {
     actorId?: StringFieldUpdateOperationsInput | string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CashSessionUpdateWithoutRequestContextInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    openingFloat?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    register?: CashRegisterUpdateOneRequiredWithoutSessionsNestedInput
+    openedBy?: UserUpdateOneRequiredWithoutCashSessionsOpenNestedInput
+    closedBy?: UserUpdateOneWithoutCashSessionsCloseNestedInput
+    movements?: CashMovementUpdateManyWithoutSessionNestedInput
+    invoices?: InvoiceUpdateManyWithoutCashSessionNestedInput
+    closedRequestContext?: RequestContextUpdateOneWithoutCashSessionsClosedNestedInput
+  }
+
+  export type CashSessionUncheckedUpdateWithoutRequestContextInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registerId?: StringFieldUpdateOperationsInput | string
+    openedById?: StringFieldUpdateOperationsInput | string
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    openingFloat?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    closedRequestContextId?: NullableStringFieldUpdateOperationsInput | string | null
+    movements?: CashMovementUncheckedUpdateManyWithoutSessionNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutCashSessionNestedInput
+  }
+
+  export type CashSessionUncheckedUpdateManyWithoutRequestContextInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registerId?: StringFieldUpdateOperationsInput | string
+    openedById?: StringFieldUpdateOperationsInput | string
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    openingFloat?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    closedRequestContextId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CashSessionUpdateWithoutClosedRequestContextInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    openingFloat?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    register?: CashRegisterUpdateOneRequiredWithoutSessionsNestedInput
+    openedBy?: UserUpdateOneRequiredWithoutCashSessionsOpenNestedInput
+    closedBy?: UserUpdateOneWithoutCashSessionsCloseNestedInput
+    movements?: CashMovementUpdateManyWithoutSessionNestedInput
+    invoices?: InvoiceUpdateManyWithoutCashSessionNestedInput
+    requestContext?: RequestContextUpdateOneRequiredWithoutCashSessionsOpenedNestedInput
+  }
+
+  export type CashSessionUncheckedUpdateWithoutClosedRequestContextInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registerId?: StringFieldUpdateOperationsInput | string
+    openedById?: StringFieldUpdateOperationsInput | string
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    openingFloat?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: StringFieldUpdateOperationsInput | string
+    movements?: CashMovementUncheckedUpdateManyWithoutSessionNestedInput
+    invoices?: InvoiceUncheckedUpdateManyWithoutCashSessionNestedInput
+  }
+
+  export type CashSessionUncheckedUpdateManyWithoutClosedRequestContextInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registerId?: StringFieldUpdateOperationsInput | string
+    openedById?: StringFieldUpdateOperationsInput | string
+    openedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    openingFloat?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    declaredTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    systemTotal?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    variance?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    requestContextId?: StringFieldUpdateOperationsInput | string
   }
 
   export type LabOrderCreateManyPreclinicInput = {
