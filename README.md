@@ -138,18 +138,6 @@ Frontend lives in a separate project:
 
 ---
 
-## ☁️ Deployment (Next Chapter)
-
-Planned AWS architecture:
-
-- ECS (Fargate)
-- RDS PostgreSQL
-- ALB
-- Secrets Manager
-- CI/CD via GitHub Actions
-
----
-
 ## 📌 Notes
 
 - Code is written in **English**
