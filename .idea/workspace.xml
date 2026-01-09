@@ -5,38 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c0704f96-6e12-4b59-84d0-e519371b956b" name="Changes" comment="Cashier -semi-ok">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deno.lock" beforeDir="false" afterPath="$PROJECT_DIR$/deno.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/client.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/client.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/default.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/default.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/edge.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/edge.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/index-browser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/edge-esm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/edge.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/index-browser.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/index-browser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/library.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/library.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/react-native.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/wasm-compiler-edge.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/wasm-engine-edge.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/schema.prisma" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/wasm.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/wasm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/mw/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/mw/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/routes/cashier.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/routes/cashier.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/routes/invoices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/routes/invoices.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/routes/patients.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/routes/patients.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/routes/preclinic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/routes/preclinic.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/userBootstrap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/userBootstrap.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +39,31 @@
     &quot;second&quot;: &quot;4544d978-c0f1-4442-a188-0a1b8c3dcb1e&quot;
   }
 }</component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1767990799" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="recovered-cashier" />
+                    <option name="lastUsedInstant" value="1767990798" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -84,30 +79,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;deno.use.library&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;recovered-cashier&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/manifestus/Work/cmsa/cmsa-deno&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/manifestus/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "deno.use.library": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Users/manifestus/Work/cmsa/cmsa-deno",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "/Users/manifestus/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/prisma/src" />
@@ -152,7 +147,7 @@
       <workItem from="1762201154176" duration="840000" />
       <workItem from="1762645302223" duration="13013000" />
       <workItem from="1766863370344" duration="18465000" />
-      <workItem from="1767685667651" duration="802000" />
+      <workItem from="1767685667651" duration="3359000" />
     </task>
     <task id="LOCAL-00001" summary="Cashier -semi-ok">
       <option name="closed" value="true" />
