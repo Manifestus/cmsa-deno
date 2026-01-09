@@ -1,1 +1,9 @@
+<<<<<<< HEAD
+=======
+node_modules
+# Keep environment variables out of version control
+.env
+
+/prisma/src/generated/prisma
+>>>>>>> 431e5da (Change to prod)
 .idea
