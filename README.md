@@ -164,7 +164,3 @@ Planned AWS architecture:
 **Victor Figueroa**  
 Clínicas Médicas Santa Ana (CMSA)
 
----
-
-✅ Backend chapter complete.  
-➡️ Next: **Frontend integration**, then **AWS Cloud deployment**.
