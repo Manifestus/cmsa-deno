@@ -28,6 +28,7 @@
     "npm:@types/node@*": "22.15.15",
     "npm:jose@^6.1.0": "6.1.0",
     "npm:path-to-regexp@^6.3.0": "6.3.0",
+    "npm:prisma@*": "6.14.0",
     "npm:prisma@^6.14.0": "6.14.0"
   },
   "jsr": {

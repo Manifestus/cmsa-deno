@@ -6,7 +6,7 @@ import {
     jwtVerify,
     type JWTPayload,
 } from "https://deno.land/x/jose@v5.8.0/index.ts";
-import { PrismaClient } from "../generated/prisma/client.js";
+import { PrismaClient } from "../generated/prisma/client.ts";
 
 const prisma = new PrismaClient();
 

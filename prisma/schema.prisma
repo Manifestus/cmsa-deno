@@ -1,6 +1,6 @@
 // ---------- Generators / Datasource ----------
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
   runtime  = "deno"
   output   = "./src/generated/prisma"
 }

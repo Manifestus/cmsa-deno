@@ -1,7 +1,7 @@
 import { Router } from "@oak/oak";
 import type { AuthState } from "../types.ts";
 import { requireRoles } from "../mw/roleGuard.ts";
-import { PrismaClient } from "../generated/prisma/index.js";
+import { PrismaClient } from "../generated/prisma/client.ts";
 
 const prisma = new PrismaClient();
 export const cashierRouter = new Router<AuthState>();
@@ -166,7 +166,7 @@ cashierRouter.post(
                 openedAt: new Date(),
                 openingFloat: parsed.openingFloat.toFixed(2),
 
-                requestContextId: openReqCtx.id,
+                requestContext: { connect: { id: openReqCtx.id } },
             },
         });
 
@@ -228,7 +228,7 @@ cashierRouter.post(
                 variance: variance.toFixed(2),
 
                 // ✅ auditing RC for close
-                closedRequestContextId: closeReqCtx.id,
+                closedRequestContext: { connect: { id: closeReqCtx.id } },
             },
         });
 

@@ -6,61 +6,34 @@
   <component name="ChangeListManager">
     <list default="true" id="c0704f96-6e12-4b59-84d0-e519371b956b" name="Changes" comment="Cashier -semi-ok">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deno.json" beforeDir="false" afterPath="$PROJECT_DIR$/deno.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deno.lock" beforeDir="false" afterPath="$PROJECT_DIR$/deno.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/src/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/client.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/commonInputTypes.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/edge.js" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/generated/prisma/edge.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/enums.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/generated/prisma/index-browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/generated/prisma/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/generated/prisma/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/internal/class.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/internal/prismaNamespace.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/ActivityLog.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/Allergy.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/AuthSession.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/CashMovement.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/CashRegister.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/CashSession.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/InventoryProduct.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/Invoice.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/InvoiceLine.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/LabDeviceMessage.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/LabInstrument.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/LabOrder.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/LabOrderTest.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/Location.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/Medication.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/Patient.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/Payment.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/PosTerminal.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/Preclinic.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/Problem.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/ProductStock.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/Provider.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/ProviderCommission.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/ReferenceRange.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/RequestContext.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/Role.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/Service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/ServiceCategory.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/SpecimenType.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/StockMovement.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/TestCatalog.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/User.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/UserRole.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/Workstation.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/models/bootstrap.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/generated/prisma/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/generated/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/wasm.js" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/generated/prisma/wasm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/client.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/client.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/default.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/default.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/edge.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/edge.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/index-browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/edge-esm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/edge.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/index-browser.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/index-browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/library.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/library.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/react-native.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/wasm-compiler-edge.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/runtime/wasm-engine-edge.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/schema.prisma" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/wasm.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/src/generated/prisma/wasm.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/src/mw/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/mw/auth.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/src/routes/cashier.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/routes/cashier.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/src/routes/invoices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/routes/invoices.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/src/routes/me.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/routes/me.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/src/routes/patients.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/routes/patients.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/src/routes/preclinic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/routes/preclinic.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/src/userBootstrap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/src/userBootstrap.ts" afterDir="false" />
@@ -121,7 +94,7 @@
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
     &quot;deno.use.library&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;recovered-cashier&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/manifestus/Work/cmsa/cmsa-deno&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -179,6 +152,7 @@
       <workItem from="1762201154176" duration="840000" />
       <workItem from="1762645302223" duration="13013000" />
       <workItem from="1766863370344" duration="18465000" />
+      <workItem from="1767685667651" duration="802000" />
     </task>
     <task id="LOCAL-00001" summary="Cashier -semi-ok">
       <option name="closed" value="true" />
