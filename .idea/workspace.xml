@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0704f96-6e12-4b59-84d0-e519371b956b" name="Changes" comment="Cashier -semi-ok" />
+    <list default="true" id="c0704f96-6e12-4b59-84d0-e519371b956b" name="Changes" comment="Cashier -semi-ok">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,16 +23,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitLabMergeRequestFiltersHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPENED&quot;,
-    &quot;assignee&quot;: {
-      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
-      &quot;username&quot;: &quot;Manifestus&quot;,
-      &quot;fullname&quot;: &quot;Victor M Figueroa&quot;
-    }
-  }
-}</component>
+  <component name="GitLabMergeRequestFiltersHistory"><![CDATA[{
+  "lastFilter": {}
+}]]></component>
   <component name="GitLabMergeRequestsSettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "first": "https://gitlab.com/Manifestus/cmsa-deno.git",
@@ -45,12 +41,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1767990799" />
+                    <option name="branchName" value="prod" />
+                    <option name="lastUsedInstant" value="1767992608" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="recovered-cashier" />
-                    <option name="lastUsedInstant" value="1767990798" />
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1767990799" />
                   </RecentBranch>
                 </list>
               </option>
@@ -86,7 +82,7 @@
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "deno.use.library": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "prod",
     "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "/Users/manifestus/Work/cmsa/cmsa-deno",
     "node.js.detected.package.eslint": "true",
@@ -144,7 +140,7 @@
       <workItem from="1762201154176" duration="840000" />
       <workItem from="1762645302223" duration="13013000" />
       <workItem from="1766863370344" duration="18465000" />
-      <workItem from="1767685667651" duration="3667000" />
+      <workItem from="1767685667651" duration="3997000" />
     </task>
     <task id="LOCAL-00001" summary="Cashier -semi-ok">
       <option name="closed" value="true" />
