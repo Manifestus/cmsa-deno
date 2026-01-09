@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0704f96-6e12-4b59-84d0-e519371b956b" name="Changes" comment="Cashier -semi-ok">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="c0704f96-6e12-4b59-84d0-e519371b956b" name="Changes" comment="Cashier -semi-ok" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,12 +30,12 @@
     }
   }
 }</component>
-  <component name="GitLabMergeRequestsSettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;first&quot;: &quot;https://gitlab.com/Manifestus/cms-web.git&quot;,
-    &quot;second&quot;: &quot;4544d978-c0f1-4442-a188-0a1b8c3dcb1e&quot;
+  <component name="GitLabMergeRequestsSettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "first": "https://gitlab.com/Manifestus/cmsa-deno.git",
+    "second": "4544d978-c0f1-4442-a188-0a1b8c3dcb1e"
   }
-}</component>
+}]]></component>
   <component name="GitToolBoxStore">
     <option name="recentBranches">
       <RecentBranches>
@@ -147,7 +144,7 @@
       <workItem from="1762201154176" duration="840000" />
       <workItem from="1762645302223" duration="13013000" />
       <workItem from="1766863370344" duration="18465000" />
-      <workItem from="1767685667651" duration="3359000" />
+      <workItem from="1767685667651" duration="3667000" />
     </task>
     <task id="LOCAL-00001" summary="Cashier -semi-ok">
       <option name="closed" value="true" />
