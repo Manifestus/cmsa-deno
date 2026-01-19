@@ -1,9 +1,12 @@
 <<<<<<< HEAD
 =======
 node_modules
-# Keep environment variables out of version control
 .env
-
 /prisma/src/generated/prisma
+<<<<<<< HEAD
 >>>>>>> 431e5da (Change to prod)
 .idea
+=======
+.idea
+prisma/src/generated/*
+>>>>>>> 92c407a (gitignore)
